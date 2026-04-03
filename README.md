@@ -1,11 +1,11 @@
-# 🎓 Luci College — Portal de Prêmios
+# Luci College — Portal de Prêmios
 
 Sistema de catálogo de prêmios para alunos da **Luci College Technology Campus**.  
 Alunos acumulam pontos por atividades acadêmicas e trocam por produtos e serviços exclusivos.
 
 ---
 
-## 🛠 Stack Tecnológica
+## Stack Tecnológica
 
 | Camada     | Tecnologia                     |
 |------------|-------------------------------|
@@ -15,7 +15,7 @@ Alunos acumulam pontos por atividades acadêmicas e trocam por produtos e servi�
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 luci-college/
@@ -35,7 +35,7 @@ luci-college/
 
 ---
 
-## ⚡ Setup Rápido
+## Setup Rápido
 
 ### 1. PostgreSQL — Criar banco e schema
 
@@ -79,7 +79,7 @@ Acesse: **http://localhost:5000**
 
 ---
 
-## 🔑 Login de Demonstração
+## Login de Demonstração
 
 | Matrícula    | Senha    | Aluno                  |
 |-------------|----------|------------------------|
@@ -89,7 +89,7 @@ Acesse: **http://localhost:5000**
 
 ---
 
-## 🗄️ Schema do Banco
+## Schema do Banco
 
 ### Tabelas principais
 
@@ -132,7 +132,7 @@ Histórico de todos os créditos e débitos de pontos por aluno.
 
 ---
 
-## 🌐 Endpoints da API
+## Endpoints da API
 
 | Método | Rota                          | Descrição                        |
 |--------|-------------------------------|----------------------------------|
@@ -147,7 +147,7 @@ Histórico de todos os créditos e débitos de pontos por aluno.
 
 ---
 
-## 🎨 Funcionalidades da UI
+## Funcionalidades da UI
 
 - ✅ Tela de login com validação e feedback visual
 - ✅ Painel de pontos com barra de nível progressiva
@@ -161,7 +161,7 @@ Histórico de todos os créditos e débitos de pontos por aluno.
 
 ---
 
-## 🔒 Segurança
+## Segurança
 
 - Senhas armazenadas como SHA-256 (recomendado usar bcrypt em produção)
 - Sessão server-side via Flask sessions
