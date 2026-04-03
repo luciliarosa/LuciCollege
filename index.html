@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luci College — Portal de Prêmios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ──────────── LOGIN OVERLAY ──────────── -->
+  <div id="login-overlay" class="overlay active">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="logo-mark">
+          <span class="logo-l">L</span>
+        </div>
+        <div class="login-brand">
+          <span class="brand-name">Luci College</span>
+          <span class="brand-tag">Technology Campus</span>
+        </div>
+      </div>
+
+      <h2 class="login-title">Bem-vindo ao<br/><em>Portal de Prêmios</em></h2>
+      <p class="login-sub">Troque seus pontos por prêmios e serviços exclusivos.</p>
+
+      <form id="login-form" class="login-form" autocomplete="off">
+        <div class="field-group">
+          <label for="matricula">Matrícula</label>
+          <input type="text" id="matricula" name="matricula" placeholder="Ex: LC2024001" required />
+        </div>
+        <div class="field-group">
+          <label for="senha">Senha</label>
+          <div class="input-wrapper">
+            <input type="password" id="senha" name="senha" placeholder="Ex: luci123" required />
+            <button type="button" class="toggle-pass" onclick="togglePass()" title="Mostrar senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="login-error" class="login-error hidden">Matrícula ou senha inválidos.</div>
+        <button type="submit" class="btn-login" id="btn-login">
+          <span id="btn-text">Entrar</span>
+          <span id="btn-loader" class="btn-loader hidden"></span>
+        </button>
+      </form>
+
+      <p class="login-help">Esqueceu a senha? <a href="#" onclick="alert('Entre em contato com a secretaria.')">Recuperar acesso</a></p>
+    </div>
+
+    <div class="login-visual">
+      <div class="visual-grid">
+        <div class="vg-card vc1"><span class="vg-icon">🎒</span><span>Mochila Luci</span></div>
+        <div class="vg-card vc2"><span class="vg-icon">📓</span><span>Caderno A5</span></div>
+        <div class="vg-card vc3"><span class="vg-icon">🥪</span><span>Vale Cantina</span></div>
+        <div class="vg-card vc4"><span class="vg-icon">🖊️</span><span>Kit Canetas</span></div>
+        <div class="vg-card vc5"><span class="vg-icon">🔑</span><span>Chaveiro</span></div>
+        <div class="vg-card vc6"><span class="vg-icon">🎓</span><span>Estojo Tech</span></div>
+      </div>
+      <div class="visual-tagline">
+        <span class="tag-pts">+10.420 pts</span>
+        <span class="tag-text">distribuídos este mês</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────── MAIN APP ──────────── -->
+  <div id="app" class="app hidden">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-inline">
+          <div class="logo-mark sm"><span class="logo-l">L</span></div>
+          <span class="brand-name">Luci College</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#catalogo" class="nav-link active" data-section="catalogo">Catálogo</a>
+        <a href="#historico" class="nav-link" data-section="historico">Histórico</a>
+        <a href="#ranking" class="nav-link" data-section="ranking">Ranking</a>
+      </nav>
+      <div class="header-right">
+        <div class="pts-badge">
+          <span class="pts-icon">⚡</span>
+          <span id="header-pts">–</span>
+          <span class="pts-label">pts</span>
+        </div>
+        <button class="btn-logout" onclick="logout()">Sair</button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-left">
+        <p class="hero-greeting" id="hero-greeting">Olá, aluno!</p>
+        <h1 class="hero-title">Seus <em>pontos</em>,<br/>seus <em>prêmios.</em></h1>
+        <p class="hero-desc">Ganhe pontos participando das atividades da faculdade e troque por produtos e serviços exclusivos Luci College.</p>
+        <div class="hero-points-card">
+          <div class="hpc-row">
+            <div class="hpc-block">
+              <span class="hpc-num" id="pts-disponiveis">—</span>
+              <span class="hpc-label">Pontos disponíveis</span>
+            </div>
+            <div class="hpc-divider"></div>
+            <div class="hpc-block">
+              <span class="hpc-num" id="pts-resgatados">—</span>
+              <span class="hpc-label">Pontos resgatados</span>
+            </div>
+            <div class="hpc-divider"></div>
+            <div class="hpc-block">
+              <span class="hpc-num" id="resgates-total">—</span>
+              <span class="hpc-label">Resgates feitos</span>
+            </div>
+          </div>
+          <div class="hpc-bar-wrap">
+            <div class="hpc-bar-track">
+              <div class="hpc-bar-fill" id="pts-bar" style="width:0%"></div>
+            </div>
+            <span class="hpc-bar-label" id="pts-nivel-label">Nível Iniciante</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-trophy">
+          <div class="trophy-glow"></div>
+          <div class="trophy-icon">🏆</div>
+          <div class="trophy-ring r1"></div>
+          <div class="trophy-ring r2"></div>
+          <div class="trophy-ring r3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER TABS -->
+    <section class="catalog-header" id="catalogo">
+      <div class="catalog-title-row">
+        <h2 class="section-title">Catálogo de Prêmios</h2>
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Buscar prêmios..." oninput="filterProducts()" />
+        </div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-cat="todos" onclick="setCategory(this)">Todos</button>
+        <button class="filter-tab" data-cat="mochila" onclick="setCategory(this)">Mochilas</button>
+        <button class="filter-tab" data-cat="papelaria" onclick="setCategory(this)">Papelaria</button>
+        <button class="filter-tab" data-cat="servico" onclick="setCategory(this)">Serviços</button>
+        <button class="filter-tab" data-cat="acessorio" onclick="setCategory(this)">Acessórios</button>
+      </div>
+    </section>
+
+    <!-- PRODUCT GRID -->
+    <section class="catalog-grid" id="products-grid">
+      <!-- Cards injetados via JS -->
+    </section>
+
+    <!-- ──────────── HISTÓRICO ──────────── -->
+    <section class="page-section hidden" id="historico">
+
+      <!-- Hero do Histórico -->
+      <div class="page-hero hist-hero">
+        <div class="page-hero-left">
+          <p class="hero-greeting">Seus resgates</p>
+          <h1 class="hero-title">Histórico <em>completo</em></h1>
+          <p class="hero-desc">Acompanhe todos os prêmios e serviços que você já resgatou com seus pontos.</p>
+        </div>
+        <div class="hist-stats-row">
+          <div class="hist-stat-card">
+            <span class="hsc-icon">🎁</span>
+            <span class="hsc-num" id="hist-total-resgates">—</span>
+            <span class="hsc-label">Resgates no total</span>
+          </div>
+          <div class="hist-stat-card">
+            <span class="hsc-icon">⚡</span>
+            <span class="hsc-num" id="hist-total-pts">—</span>
+            <span class="hsc-label">Pontos utilizados</span>
+          </div>
+          <div class="hist-stat-card">
+            <span class="hsc-icon">✅</span>
+            <span class="hsc-num" id="hist-aprovados">—</span>
+            <span class="hsc-label">Aprovados</span>
+          </div>
+          <div class="hist-stat-card">
+            <span class="hsc-icon">⏳</span>
+            <span class="hsc-num" id="hist-pendentes">—</span>
+            <span class="hsc-label">Pendentes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros do histórico -->
+      <div class="hist-controls">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="hist-search" class="search-input" placeholder="Buscar por prêmio..." oninput="filterHistory()" />
+        </div>
+        <div class="hist-filter-group">
+          <button class="filter-tab active" data-hstatus="todos" onclick="setHistStatus(this)">Todos</button>
+          <button class="filter-tab" data-hstatus="aprovado" onclick="setHistStatus(this)">Aprovados</button>
+          <button class="filter-tab" data-hstatus="pendente" onclick="setHistStatus(this)">Pendentes</button>
+          <button class="filter-tab" data-hstatus="cancelado" onclick="setHistStatus(this)">Cancelados</button>
+        </div>
+      </div>
+
+      <!-- Cards de histórico (mobile-friendly) -->
+      <div class="hist-cards" id="hist-cards">
+        <!-- injetado via JS -->
+      </div>
+
+      <!-- Tabela (desktop) -->
+      <div class="history-table-wrap" id="hist-table-wrap">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Prêmio</th>
+              <th>Categoria</th>
+              <th>Pontos</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr class="empty-row"><td colspan="5">Nenhum resgate encontrado.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ──────────── RANKING ──────────── -->
+    <section class="page-section hidden" id="ranking">
+
+      <!-- Hero do Ranking -->
+      <div class="page-hero rank-hero">
+        <div class="page-hero-left">
+          <p class="hero-greeting">Competição saudável</p>
+          <h1 class="hero-title">Ranking do <em>Semestre</em></h1>
+          <p class="hero-desc">Os alunos com mais pontos acumulados este semestre. Continue participando das atividades para subir no ranking!</p>
+        </div>
+        <div class="rank-hero-right">
+          <div class="rank-podium">
+            <div class="podium-item p2" id="podium-2">
+              <div class="podium-avatar" id="pod-av-2">—</div>
+              <div class="podium-name" id="pod-nm-2">—</div>
+              <div class="podium-pts" id="pod-pt-2">—</div>
+              <div class="podium-block b2">2</div>
+            </div>
+            <div class="podium-item p1" id="podium-1">
+              <div class="podium-crown">👑</div>
+              <div class="podium-avatar gold" id="pod-av-1">—</div>
+              <div class="podium-name" id="pod-nm-1">—</div>
+              <div class="podium-pts" id="pod-pt-1">—</div>
+              <div class="podium-block b1">1</div>
+            </div>
+            <div class="podium-item p3" id="podium-3">
+              <div class="podium-avatar" id="pod-av-3">—</div>
+              <div class="podium-name" id="pod-nm-3">—</div>
+              <div class="podium-pts" id="pod-pt-3">—</div>
+              <div class="podium-block b3">3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minha posição -->
+      <div class="my-rank-banner" id="my-rank-banner">
+        <span class="mrb-label">Sua posição atual</span>
+        <span class="mrb-pos" id="my-rank-pos">—</span>
+        <div class="mrb-divider"></div>
+        <span class="mrb-pts" id="my-rank-pts">—</span>
+        <span class="mrb-pts-label">pontos totais</span>
+        <div class="mrb-divider"></div>
+        <span class="mrb-diff" id="my-rank-diff"></span>
+      </div>
+
+      <!-- Filtros do ranking -->
+      <div class="rank-controls">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="rank-search" class="search-input" placeholder="Buscar aluno..." oninput="filterRanking()" />
+        </div>
+        <div class="rank-filter-group">
+          <button class="filter-tab active" data-rcurso="todos" onclick="setRankCurso(this)">Todos os cursos</button>
+          <button class="filter-tab" data-rcurso="Engenharia de Software" onclick="setRankCurso(this)">Eng. Software</button>
+          <button class="filter-tab" data-rcurso="Ciência da Computação" onclick="setRankCurso(this)">Ciência Comp.</button>
+          <button class="filter-tab" data-rcurso="Análise e Sistemas" onclick="setRankCurso(this)">Análise e Sist.</button>
+        </div>
+      </div>
+
+      <!-- Lista de ranking -->
+      <div class="ranking-list" id="ranking-list">
+        <!-- injetado via JS -->
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-left">
+        <div class="logo-mark sm"><span class="logo-l">L</span></div>
+        <span>© 2025 Luci College Technology Campus</span>
+      </div>
+      <div class="footer-right">
+        <a href="#">Regulamento</a>
+        <a href="#">Suporte</a>
+        <a href="#">Secretaria</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL DE RESGATE -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-img" id="modal-img"></div>
+      <div class="modal-body">
+        <span class="modal-cat" id="modal-cat"></span>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-pts-row">
+          <span class="modal-pts-num" id="modal-pts"></span>
+          <span class="modal-pts-label">pontos</span>
+        </div>
+        <div class="modal-actions">
+          <div id="modal-saldo-warning" class="saldo-warning hidden">Você não tem pontos suficientes.</div>
+          <button class="btn-resgatar" id="btn-resgatar" onclick="confirmarResgate()">Resgatar agora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
