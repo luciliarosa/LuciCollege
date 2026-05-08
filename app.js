@@ -230,7 +230,12 @@ function openModal(product) {
   setEl("modal-title", product.nome);
   setEl("modal-desc",  product.descricao);
   setEl("modal-pts",   formatNum(product.pontos));
-  document.getElementById("modal-img").textContent = product.imagem;
+  const modalImg = document.getElementById("modal-img");
+  if (product.imagem) {
+    modalImg.innerHTML = `<img src="${product.imagem}" alt="${product.nome}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`;
+  } else {
+    modalImg.textContent = product.emoji || "🎁";
+  }
   const warn = document.getElementById("modal-saldo-warning");
   canAfford ? warn.classList.add("hidden") : warn.classList.remove("hidden");
   document.getElementById("btn-resgatar").disabled = !canAfford;
