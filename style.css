@@ -1470,6 +1470,401 @@ a:hover { text-decoration: underline; }
 .hora-card-day { font-size: 11px; opacity: 0.45; margin: 0 0 4px; }
 .hora-card-time { font-size: 14px; font-weight: 600; margin: 0; }
 
+/* ── Hero do Perfil ── */
+.perfil-hero {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: start;
+  flex-wrap: wrap;
+}
+ 
+.perfil-avatar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.perfil-avatar-ring {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  flex-shrink: 0;
+}
+ 
+.perfil-avatar-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+}
+ 
+.perfil-nivel-badge {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--accent3);
+  background: color-mix(in srgb, var(--accent3) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent3) 25%, transparent);
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+ 
+.perfil-info-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+ 
+.perfil-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text2);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+ 
+.chip-icon { font-size: 14px; }
+ 
+.perfil-stats-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  align-self: center;
+}
+ 
+.perfil-stat-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 130px;
+}
+ 
+.psc-icon { font-size: 18px; }
+ 
+.psc-num {
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+ 
+.psc-label {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+}
+ 
+/* ── Controles do Perfil ── */
+.perfil-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 var(--page-px);
+  margin-bottom: 8px;
+}
+ 
+.perfil-controls-left { display: flex; gap: 12px; }
+ 
+.perfil-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+ 
+.perfil-select-label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+ 
+.perfil-select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color .2s;
+}
+ 
+.perfil-select:focus { border-color: var(--accent); }
+ 
+.perfil-filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+ 
+/* ── Resumo do semestre ── */
+.perfil-semestre-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 0 var(--page-px);
+  margin-bottom: 32px;
+}
+ 
+.psr-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+ 
+.psr-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+ 
+.psr-info { display: flex; flex-direction: column; gap: 2px; }
+ 
+.psr-num {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+}
+ 
+.psr-num.green { color: #4ade80; }
+.psr-num.red   { color: #f87171; }
+ 
+.psr-label {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+}
+ 
+/* ── Timeline ── */
+.perfil-timeline {
+  padding: 0 var(--page-px) 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+ 
+.mes-group { display: flex; flex-direction: column; gap: 0; }
+ 
+.mes-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+ 
+.mes-label {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+ 
+.mes-pts-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+ 
+.mes-pts-badge.ganhou {
+  color: #4ade80;
+  background: rgba(74, 222, 128, .1);
+  border: 1px solid rgba(74, 222, 128, .25);
+}
+ 
+.mes-pts-badge.zero {
+  color: var(--text3);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+ 
+.mes-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+ 
+/* Cards de atividade */
+.ativ-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
+}
+ 
+.ativ-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  transition: border-color .2s, transform .15s;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.ativ-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+ 
+.ativ-card.ganhou::before  { background: #4ade80; }
+.ativ-card.nao_ganhou::before { background: #f87171; }
+ 
+.ativ-card:hover {
+  border-color: var(--accent);
+  transform: translateX(3px);
+}
+ 
+.ativ-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+ 
+.ativ-icon.ganhou    { background: rgba(74,222,128,.12); }
+.ativ-icon.nao_ganhou { background: rgba(248,113,113,.12); }
+ 
+.ativ-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+ 
+.ativ-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.ativ-detalhe {
+  font-size: 12px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+ 
+.ativ-detalhe .motivo-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 7px;
+  font-size: 11px;
+}
+ 
+.ativ-pts-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+ 
+.ativ-pts {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 800;
+}
+ 
+.ativ-pts.ganhou    { color: #4ade80; }
+.ativ-pts.nao_ganhou { color: #f87171; }
+ 
+.ativ-pts-label {
+  font-size: 10px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+}
+ 
+.ativ-data {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+}
+ 
+/* Empty state */
+.perfil-empty {
+  text-align: center;
+  color: var(--text3);
+  padding: 60px 0;
+  font-size: 14px;
+}
+ 
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .perfil-hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+ 
+  .perfil-avatar-col {
+    flex-direction: row;
+    align-items: center;
+  }
+ 
+  .perfil-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  .perfil-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+ 
+  .ativ-card {
+    grid-template-columns: 36px 1fr;
+  }
+ 
+  .ativ-pts-col {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
 /* ─── FOOTER ─── */
 .footer {
   background: var(--bg2);

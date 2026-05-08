@@ -38,12 +38,12 @@ const DEMO_PRODUCTS = [
 ];
 
 const DEMO_HISTORY = [
-  { data:"15/05/2025", premio:"Estojo Tech Luci",         emoji:"💼", categoria:"papelaria", pontos:900, status:"aprovado"  },
-  { data:"02/04/2025", premio:"Kit Canetas (6un)",         emoji:"🖊️", categoria:"papelaria", pontos:300, status:"aprovado"  },
-  { data:"10/03/2025", premio:"Vale Salgado — Cantina",   emoji:"🥪", categoria:"servico",   pontos:200, status:"pendente"  },
-  { data:"21/01/2025", premio:"Caderno A5 Luci",          emoji:"📓", categoria:"papelaria", pontos:600, status:"aprovado"  },
-  { data:"05/12/2024", premio:"Chaveiro Metálico Luci",   emoji:"🔑", categoria:"acessorio", pontos:150, status:"entregue"  },
-  { data:"18/11/2024", premio:"Vale Almoço — Rest. U.",   emoji:"🍱", categoria:"servico",   pontos:450, status:"cancelado" },
+  { data:"15/05/2025", premio:"Estojo Tech Luci",         imagem:"./img/EstojoLuci.png", categoria:"papelaria", pontos:900, status:"aprovado"  },
+  { data:"02/04/2025", premio:"Kit Canetas (6un)",         imagem:"./img/KitCanetaLuci.png", categoria:"papelaria", pontos:300, status:"aprovado"  },
+  { data:"10/03/2025", premio:"Vale Salgado — Cantina",   imagem:"./img/ValeCantinaLuci.png", categoria:"servico",   pontos:200, status:"pendente"  },
+  { data:"21/01/2025", premio:"Caderno A5 Luci",          imagem:"./img/CadernoLuci.png", categoria:"papelaria", pontos:600, status:"aprovado"  },
+  { data:"05/12/2024", premio:"Chaveiro Metálico Luci",   imagem:"./img/ChaveiroLuci.png", categoria:"acessorio", pontos:150, status:"entregue"  },
+  { data:"18/11/2024", premio:"Vale Almoço — Rest. U.",   imagem:"./img/ValeAlmocoLuci.png", categoria:"servico",   pontos:450, status:"cancelado" },
 ];
 
 const DEMO_RANKING = [
@@ -148,7 +148,6 @@ function initNav() {
 }
 
 function showSection(sec) {
-  // FIX: use querySelector for class-based element (catalog-header has no id)
   const catalogHeader = document.querySelector(".catalog-header");
   const hero          = document.querySelector(".hero");
   const productsGrid  = document.getElementById("products-grid");
@@ -159,6 +158,9 @@ function showSection(sec) {
 
   toggleSection("historico", sec === "historico");
   toggleSection("ranking",   sec === "ranking");
+  toggleSection("perfil",    sec === "perfil");
+
+  if (sec === "perfil") renderPerfil();
 }
 
 function toggleSection(id, show) {
@@ -266,7 +268,14 @@ async function confirmarResgate() {
     currentUser.pontos_disponiveis = currentPoints;
     currentUser.resgates_total += 1;
     currentUser.pontos_resgatados += pts;
-    allHistory.unshift({ data:new Date().toLocaleDateString("pt-BR"), premio:selectedProduct.nome, emoji:selectedProduct.imagem, categoria:selectedProduct.categoria, pontos:pts, status:"pendente" });
+    allHistory.unshift({ 
+      data: new Date().toLocaleDateString("pt-BR"), 
+      premio: selectedProduct.nome, 
+      emoji: selectedProduct.imagem ? null : (selectedProduct.emoji || "🎁"),
+      imagem: selectedProduct.imagem || null,
+      categoria: selectedProduct.categoria, 
+      pontos: pts, 
+      status: "pendente" });    
     closeModal(); updateUI(); renderProducts(allProducts); renderHistory(allHistory); updateHistStats();
     showToast(`✅ Resgate de "${selectedProduct.nome}" realizado!`);
   } else {
@@ -301,7 +310,10 @@ function renderHistory(list) {
       <td style="font-family:var(--font-mono);font-size:12px;color:var(--text3);white-space:nowrap">${h.data}</td>
       <td>
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:20px">${h.emoji||"🎁"}</span>
+          ${h.imagem
+  ? `<img src="${h.imagem}" alt="${h.premio}" style="width:28px;height:28px;object-fit:cover;border-radius:4px;">`
+  : `<span style="font-size:20px">${h.emoji||"🎁"}</span>`
+}
           <span style="font-weight:500;color:var(--text)">${h.premio}</span>
         </div>
       </td>
@@ -462,4 +474,224 @@ function closeSecretariaModal(e) {
   if (e && e.target !== document.getElementById('modal-secretaria')) return;
   document.getElementById('modal-secretaria').classList.add('hidden');
   document.body.style.overflow = '';
+}
+
+/* ══════════════════════════════════════════
+   PERFIL DO ALUNO
+   ══════════════════════════════════════════ */
+
+/* Tipo de atividade ativo no filtro */
+let activeAtivType = "todos";
+
+const DEMO_ATIVIDADES = {
+  "2025-1": [
+    // Maio 2025
+    { data:"20/05/2025", tipo:"presenca", descricao:"Aula — Eng. de Software IV", status:"ganhou",     pontos:100, detalhe:"Frequência: 80%"  },
+    { data:"19/05/2025", tipo:"prova",    descricao:"Prova P2 — Banco de Dados",  status:"ganhou",     pontos:420, detalhe:"Nota: 8,4"        },
+    { data:"17/05/2025", tipo:"presenca", descricao:"Aula — Redes e Protocolos",  status:"nao_ganhou", pontos:0,   detalhe:"Frequência: 60%",  motivo_nao:"Frequência abaixo de 75%" },
+    { data:"14/05/2025", tipo:"trabalho", descricao:"TDE — UX e Prototipagem",    status:"ganhou",     pontos:100, detalhe:"Entregue no prazo" },
+    { data:"12/05/2025", tipo:"presenca", descricao:"Aula — Cálculo Numérico",    status:"ganhou",     pontos:100, detalhe:"Frequência: 100%" },
+    { data:"08/05/2025", tipo:"evento",   descricao:"Semana da Computação 2025",  status:"ganhou",     pontos:500, detalhe:"Participação completa" },
+    // Abril 2025
+    { data:"28/04/2025", tipo:"presenca", descricao:"Aula — Eng. de Software IV", status:"ganhou",     pontos:100, detalhe:"Frequência: 90%"  },
+    { data:"25/04/2025", tipo:"prova",    descricao:"Prova P1 — Compiladores",    status:"nao_ganhou", pontos:0,   detalhe:"Nota: 3,5",        motivo_nao:"Nota abaixo do mínimo (5,0)" },
+    { data:"22/04/2025", tipo:"trabalho", descricao:"TDE — Análise de Algoritmos",status:"ganhou",     pontos:100, detalhe:"Entregue no prazo" },
+    { data:"18/04/2025", tipo:"presenca", descricao:"Aula — Banco de Dados II",   status:"ganhou",     pontos:100, detalhe:"Frequência: 85%"  },
+    { data:"10/04/2025", tipo:"prova",    descricao:"Prova P1 — Banco de Dados",  status:"ganhou",     pontos:380, detalhe:"Nota: 7,6"        },
+    { data:"05/04/2025", tipo:"indicacao",descricao:"Indicação de colega",        status:"ganhou",     pontos:300, detalhe:"Lucas Ribeiro matriculado" },
+    // Março 2025
+    { data:"28/03/2025", tipo:"trabalho", descricao:"TDE — Estruturas de Dados",  status:"nao_ganhou", pontos:0,   detalhe:"Entregue com atraso", motivo_nao:"Entrega fora do prazo" },
+    { data:"24/03/2025", tipo:"presenca", descricao:"Aula — Compiladores",        status:"ganhou",     pontos:100, detalhe:"Frequência: 75%"  },
+    { data:"20/03/2025", tipo:"presenca", descricao:"Aula — Cálculo Numérico",    status:"nao_ganhou", pontos:0,   detalhe:"Frequência: 50%",  motivo_nao:"Frequência abaixo de 75%" },
+    { data:"15/03/2025", tipo:"evento",   descricao:"Hackathon Luci 2025",        status:"ganhou",     pontos:800, detalhe:"3º lugar na competição" },
+    { data:"10/03/2025", tipo:"prova",    descricao:"Prova P1 — Compiladores",    status:"ganhou",     pontos:460, detalhe:"Nota: 9,2"        },
+    { data:"05/03/2025", tipo:"presenca", descricao:"Aula — Redes e Protocolos",  status:"ganhou",     pontos:100, detalhe:"Frequência: 80%"  },
+    // Fevereiro 2025
+    { data:"27/02/2025", tipo:"presenca", descricao:"Aula — Eng. de Software IV", status:"ganhou",     pontos:100, detalhe:"Frequência: 100%" },
+    { data:"20/02/2025", tipo:"trabalho", descricao:"TDE — Requisitos de Software",status:"ganhou",    pontos:100, detalhe:"Entregue no prazo" },
+    { data:"13/02/2025", tipo:"presenca", descricao:"Aula — Banco de Dados II",   status:"nao_ganhou", pontos:0,   detalhe:"Faltou",           motivo_nao:"Frequência abaixo de 75%" },
+    { data:"06/02/2025", tipo:"evento",   descricao:"Palestra — IA na Indústria", status:"ganhou",     pontos:200, detalhe:"Presença confirmada" },
+  ],
+  "2024-2": [
+    { data:"10/12/2024", tipo:"prova",    descricao:"Prova Final — Álgebra Linear",status:"ganhou",    pontos:490, detalhe:"Nota: 9,8"        },
+    { data:"05/12/2024", tipo:"trabalho", descricao:"TDE — Projeto Final Eng. SW", status:"ganhou",    pontos:100, detalhe:"Entregue no prazo" },
+    { data:"28/11/2024", tipo:"presenca", descricao:"Aula — Álgebra Linear",       status:"ganhou",    pontos:100, detalhe:"Frequência: 90%"  },
+    { data:"20/11/2024", tipo:"evento",   descricao:"ENCOINFO 2024",               status:"ganhou",    pontos:400, detalhe:"Participação completa" },
+    { data:"15/11/2024", tipo:"prova",    descricao:"Prova P2 — Eng. de Software", status:"nao_ganhou",pontos:0,   detalhe:"Nota: 4,0",        motivo_nao:"Nota abaixo do mínimo (5,0)" },
+    { data:"08/11/2024", tipo:"presenca", descricao:"Aula — POO Avançada",         status:"ganhou",    pontos:100, detalhe:"Frequência: 85%"  },
+    { data:"25/10/2024", tipo:"prova",    descricao:"Prova P2 — Álgebra Linear",   status:"ganhou",    pontos:350, detalhe:"Nota: 7,0"        },
+    { data:"18/10/2024", tipo:"trabalho", descricao:"TDE — Design Patterns",       status:"nao_ganhou",pontos:0,   detalhe:"Não entregue",     motivo_nao:"Trabalho não entregue"    },
+    { data:"10/10/2024", tipo:"presenca", descricao:"Aula — Álgebra Linear",       status:"ganhou",    pontos:100, detalhe:"Frequência: 80%"  },
+    { data:"02/10/2024", tipo:"indicacao",descricao:"Indicação de colega",         status:"ganhou",    pontos:300, detalhe:"Pedro Gomes matriculado" },
+  ],
+  "2024-1": [
+    { data:"15/06/2024", tipo:"prova",    descricao:"Prova Final — Cálculo I",     status:"ganhou",    pontos:440, detalhe:"Nota: 8,8"        },
+    { data:"10/06/2024", tipo:"trabalho", descricao:"TDE — Modelagem de Dados",    status:"ganhou",    pontos:100, detalhe:"Entregue no prazo" },
+    { data:"05/06/2024", tipo:"presenca", descricao:"Aula — Programação Web",      status:"ganhou",    pontos:100, detalhe:"Frequência: 100%" },
+    { data:"20/05/2024", tipo:"prova",    descricao:"Prova P2 — Cálculo I",        status:"nao_ganhou",pontos:0,   detalhe:"Nota: 4,5",        motivo_nao:"Nota abaixo do mínimo (5,0)" },
+    { data:"15/05/2024", tipo:"evento",   descricao:"Semana da TI 2024",           status:"ganhou",    pontos:300, detalhe:"Participação completa" },
+    { data:"10/04/2024", tipo:"prova",    descricao:"Prova P1 — Cálculo I",        status:"ganhou",    pontos:500, detalhe:"Nota: 10,0"       },
+    { data:"05/04/2024", tipo:"presenca", descricao:"Aula — Algoritmos",           status:"nao_ganhou",pontos:0,   detalhe:"Frequência: 40%",  motivo_nao:"Frequência abaixo de 75%" },
+    { data:"20/03/2024", tipo:"trabalho", descricao:"TDE — Lógica de Programação", status:"ganhou",    pontos:100, detalhe:"Entregue no prazo" },
+    { data:"10/03/2024", tipo:"presenca", descricao:"Aula — Cálculo I",            status:"ganhou",    pontos:100, detalhe:"Frequência: 75%"  },
+    { data:"01/03/2024", tipo:"evento",   descricao:"Aula Inaugural 2024/1",       status:"ganhou",    pontos:200, detalhe:"Presença confirmada" },
+  ],
+};
+
+const ATIV_ICON = {
+  presenca:  "📅",
+  prova:     "📝",
+  trabalho:  "📌",
+  evento:    "🎪",
+  indicacao: "👥",
+};
+
+const ATIV_LABEL = {
+  presenca:  "Presença",
+  prova:     "Avaliação",
+  trabalho:  "Trabalho",
+  evento:    "Evento",
+  indicacao: "Indicação",
+};
+
+const MESES_PT = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+const MESES_FULL = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+
+function setAtivType(el) {
+  document.querySelectorAll(".filter-tab[data-atype]").forEach(t => t.classList.remove("active"));
+  el.classList.add("active");
+  activeAtivType = el.dataset.atype;
+  renderAtividades();
+}
+
+function renderPerfil() {
+  if (!currentUser) return;
+
+  /* ── dados do aluno ── */
+  const nomes   = currentUser.nome.split(" ");
+  const iniciais = (nomes[0]?.[0] || "") + (nomes[1]?.[0] || "");
+  setEl("perfil-avatar-iniciais", iniciais.toUpperCase());
+  setEl("perfil-nivel-badge",     getLevel(currentUser.pontos_disponiveis));
+
+  /* título com nome dividido */
+  const tituloEl = document.getElementById("perfil-nome-titulo");
+  if (tituloEl) tituloEl.innerHTML = `${nomes[0]}<br/><em>${nomes.slice(1).join(" ")}</em>`;
+
+  setEl("perfil-curso",      currentUser.curso      || "—");
+  setEl("perfil-matricula",  currentUser.matricula   || "—");
+  setEl("perfil-email",      currentUser.email       || `${currentUser.matricula?.toLowerCase()}@luci.edu.br`);
+  setEl("perfil-pts-disp",   formatNum(currentUser.pontos_disponiveis));
+  setEl("perfil-pts-total",  formatNum(currentUser.pontos_disponiveis + currentUser.pontos_resgatados));
+  setEl("perfil-resgates",   currentUser.resgates_total);
+
+  /* posição no ranking */
+  const myIdx = allRanking.findIndex(r => r.me);
+  setEl("perfil-pos-ranking", myIdx >= 0 ? `#${myIdx + 1}º` : "—");
+
+  renderAtividades();
+}
+
+function renderAtividades() {
+  const semestre = document.getElementById("perfil-semestre-sel")?.value || "2025-1";
+  const tipo     = activeAtivType;
+  const todas    = DEMO_ATIVIDADES[semestre] || [];
+  const filtradas = todas.filter(a => tipo === "todos" || a.status === tipo);
+
+  /* ── Resumo do semestre ── */
+  const totalGanhou    = todas.filter(a => a.status === "ganhou").length;
+  const totalNaoGanhou = todas.filter(a => a.status === "nao_ganhou").length;
+  const ptsGanhos      = todas.filter(a => a.status === "ganhou").reduce((s, a) => s + a.pontos, 0);
+
+  const resumoEl = document.getElementById("perfil-semestre-resumo");
+  if (resumoEl) {
+    resumoEl.innerHTML = `
+      <div class="psr-card">
+        <span class="psr-icon">⚡</span>
+        <div class="psr-info">
+          <span class="psr-num green">+${formatNum(ptsGanhos)}</span>
+          <span class="psr-label">Pontos no semestre</span>
+        </div>
+      </div>
+      <div class="psr-card">
+        <span class="psr-icon">✅</span>
+        <div class="psr-info">
+          <span class="psr-num green">${totalGanhou}</span>
+          <span class="psr-label">Atividades com pontos</span>
+        </div>
+      </div>
+      <div class="psr-card">
+        <span class="psr-icon">❌</span>
+        <div class="psr-info">
+          <span class="psr-num red">${totalNaoGanhou}</span>
+          <span class="psr-label">Atividades sem pontos</span>
+        </div>
+      </div>
+      <div class="psr-card">
+        <span class="psr-icon">📊</span>
+        <div class="psr-info">
+          <span class="psr-num">${totalGanhou + totalNaoGanhou > 0 ? Math.round((totalGanhou / (totalGanhou + totalNaoGanhou)) * 100) : 0}%</span>
+          <span class="psr-label">Taxa de aproveitamento</span>
+        </div>
+      </div>
+    `;
+  }
+
+  /* ── Agrupa por mês ── */
+  const timelineEl = document.getElementById("perfil-timeline");
+  if (!timelineEl) return;
+
+  if (!filtradas.length) {
+    timelineEl.innerHTML = `<p class="perfil-empty">Nenhuma atividade encontrada para este filtro.</p>`;
+    return;
+  }
+
+  /* Monta mapa mês → atividades */
+  const porMes = new Map();
+  filtradas.forEach(a => {
+    const partes = a.data.split("/");
+    const key    = `${partes[2]}-${partes[1]}`; // "2025-05"
+    if (!porMes.has(key)) porMes.set(key, []);
+    porMes.get(key).push(a);
+  });
+
+  /* Ordena meses do mais recente para o mais antigo */
+  const mesesOrdenados = [...porMes.keys()].sort((a, b) => b.localeCompare(a));
+
+  timelineEl.innerHTML = mesesOrdenados.map(key => {
+    const [ano, mes] = key.split("-");
+    const mesIdx     = parseInt(mes, 10) - 1;
+    const ativs      = porMes.get(key);
+    const ptsMes     = ativs.filter(a => a.status === "ganhou").reduce((s, a) => s + a.pontos, 0);
+
+    const badgeClass = ptsMes > 0 ? "ganhou" : "zero";
+    const badgeText  = ptsMes > 0 ? `+${formatNum(ptsMes)} pts` : "0 pts";
+
+    const cards = ativs.map(a => `
+      <div class="ativ-card ${a.status}">
+        <div class="ativ-icon ${a.status}">${ATIV_ICON[a.tipo] || "📋"}</div>
+        <div class="ativ-body">
+          <span class="ativ-nome">${a.descricao}</span>
+          <div class="ativ-detalhe">
+            <span class="motivo-pill">${ATIV_LABEL[a.tipo] || a.tipo}</span>
+            <span>${a.detalhe}</span>
+            ${a.status === "nao_ganhou" && a.motivo_nao ? `<span style="color:#f87171">⚠ ${a.motivo_nao}</span>` : ""}
+          </div>
+        </div>
+        <div class="ativ-pts-col">
+          <span class="ativ-pts ${a.status}">${a.status === "ganhou" ? "+" + formatNum(a.pontos) : "—"}</span>
+          <span class="ativ-pts-label">${a.status === "ganhou" ? "pontos" : "pts"}</span>
+          <span class="ativ-data">${a.data}</span>
+        </div>
+      </div>`).join("");
+
+    return `
+      <div class="mes-group">
+        <div class="mes-header">
+          <span class="mes-label">${MESES_FULL[mesIdx]} ${ano}</span>
+          <span class="mes-pts-badge ${badgeClass}">${badgeText}</span>
+          <div class="mes-line"></div>
+        </div>
+        <div class="ativ-list">${cards}</div>
+      </div>`;
+  }).join("");
 }

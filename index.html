@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Luci College — Portal de Prêmios</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎒</text></svg>"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎒</text></svg>"/>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -80,9 +80,10 @@
         </div>
       </div>
       <nav class="header-nav">
-        <a href="#catalogo" class="nav-link active" data-section="catalogo">Catálogo</a>
+        <a href="#perfil"    class="nav-link" data-section="perfil">Perfil</a>
+        <a href="#catalogo"  class="nav-link active" data-section="catalogo">Catálogo</a>
         <a href="#historico" class="nav-link" data-section="historico">Histórico</a>
-        <a href="#ranking" class="nav-link" data-section="ranking">Ranking</a>
+        <a href="#ranking"   class="nav-link" data-section="ranking">Ranking</a>
       </nav>
       <div class="header-right">
         <div class="pts-badge">
@@ -146,11 +147,11 @@
         </div>
       </div>
       <div class="filter-tabs">
-        <button class="filter-tab active" data-cat="todos" onclick="setCategory(this)">Todos</button>
-        <button class="filter-tab" data-cat="mochila" onclick="setCategory(this)">Mochilas</button>
-        <button class="filter-tab" data-cat="papelaria" onclick="setCategory(this)">Papelaria</button>
-        <button class="filter-tab" data-cat="servico" onclick="setCategory(this)">Serviços</button>
-        <button class="filter-tab" data-cat="acessorio" onclick="setCategory(this)">Acessórios</button>
+        <button class="filter-tab active" data-cat="todos"     onclick="setCategory(this)">Todos</button>
+        <button class="filter-tab"        data-cat="mochila"   onclick="setCategory(this)">Mochilas</button>
+        <button class="filter-tab"        data-cat="papelaria" onclick="setCategory(this)">Papelaria</button>
+        <button class="filter-tab"        data-cat="servico"   onclick="setCategory(this)">Serviços</button>
+        <button class="filter-tab"        data-cat="acessorio" onclick="setCategory(this)">Acessórios</button>
       </div>
     </section>
 
@@ -162,7 +163,6 @@
     <!-- ──────────── HISTÓRICO ──────────── -->
     <section class="page-section hidden" id="historico">
 
-      <!-- Hero do Histórico -->
       <div class="page-hero hist-hero">
         <div class="page-hero-left">
           <p class="hero-greeting">Seus resgates</p>
@@ -193,26 +193,21 @@
         </div>
       </div>
 
-      <!-- Filtros do histórico -->
       <div class="hist-controls">
         <div class="search-wrap">
           <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input type="text" id="hist-search" class="search-input" placeholder="Buscar por prêmio..." oninput="filterHistory()" />
         </div>
         <div class="hist-filter-group">
-          <button class="filter-tab active" data-hstatus="todos" onclick="setHistStatus(this)">Todos</button>
-          <button class="filter-tab" data-hstatus="aprovado" onclick="setHistStatus(this)">Aprovados</button>
-          <button class="filter-tab" data-hstatus="pendente" onclick="setHistStatus(this)">Pendentes</button>
-          <button class="filter-tab" data-hstatus="cancelado" onclick="setHistStatus(this)">Cancelados</button>
+          <button class="filter-tab active" data-hstatus="todos"     onclick="setHistStatus(this)">Todos</button>
+          <button class="filter-tab"        data-hstatus="aprovado"  onclick="setHistStatus(this)">Aprovados</button>
+          <button class="filter-tab"        data-hstatus="pendente"  onclick="setHistStatus(this)">Pendentes</button>
+          <button class="filter-tab"        data-hstatus="cancelado" onclick="setHistStatus(this)">Cancelados</button>
         </div>
       </div>
 
-      <!-- Cards de histórico (mobile-friendly) -->
-      <div class="hist-cards" id="hist-cards">
-        <!-- injetado via JS -->
-      </div>
+      <div class="hist-cards" id="hist-cards"></div>
 
-      <!-- Tabela (desktop) -->
       <div class="history-table-wrap" id="hist-table-wrap">
         <table class="history-table">
           <thead>
@@ -235,7 +230,6 @@
     <!-- ──────────── RANKING ──────────── -->
     <section class="page-section hidden" id="ranking">
 
-      <!-- Hero do Ranking -->
       <div class="page-hero rank-hero">
         <div class="page-hero-left">
           <p class="hero-greeting">Competição saudável</p>
@@ -246,28 +240,27 @@
           <div class="rank-podium">
             <div class="podium-item p2" id="podium-2">
               <div class="podium-avatar" id="pod-av-2">—</div>
-              <div class="podium-name" id="pod-nm-2">—</div>
-              <div class="podium-pts" id="pod-pt-2">—</div>
+              <div class="podium-name"  id="pod-nm-2">—</div>
+              <div class="podium-pts"   id="pod-pt-2">—</div>
               <div class="podium-block b2">2</div>
             </div>
             <div class="podium-item p1" id="podium-1">
               <div class="podium-crown">👑</div>
               <div class="podium-avatar gold" id="pod-av-1">—</div>
-              <div class="podium-name" id="pod-nm-1">—</div>
-              <div class="podium-pts" id="pod-pt-1">—</div>
+              <div class="podium-name"        id="pod-nm-1">—</div>
+              <div class="podium-pts"         id="pod-pt-1">—</div>
               <div class="podium-block b1">1</div>
             </div>
             <div class="podium-item p3" id="podium-3">
               <div class="podium-avatar" id="pod-av-3">—</div>
-              <div class="podium-name" id="pod-nm-3">—</div>
-              <div class="podium-pts" id="pod-pt-3">—</div>
+              <div class="podium-name"  id="pod-nm-3">—</div>
+              <div class="podium-pts"   id="pod-pt-3">—</div>
               <div class="podium-block b3">3</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Minha posição -->
       <div class="my-rank-banner" id="my-rank-banner">
         <span class="mrb-label">Sua posição atual</span>
         <span class="mrb-pos" id="my-rank-pos">—</span>
@@ -278,22 +271,91 @@
         <span class="mrb-diff" id="my-rank-diff"></span>
       </div>
 
-      <!-- Filtros do ranking -->
       <div class="rank-controls">
         <div class="search-wrap">
           <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input type="text" id="rank-search" class="search-input" placeholder="Buscar aluno..." oninput="filterRanking()" />
         </div>
         <div class="rank-filter-group">
-          <button class="filter-tab active" data-rcurso="todos" onclick="setRankCurso(this)">Todos os cursos</button>
-          <button class="filter-tab" data-rcurso="Engenharia de Software" onclick="setRankCurso(this)">Eng. Software</button>
-          <button class="filter-tab" data-rcurso="Ciência da Computação" onclick="setRankCurso(this)">Ciência Comp.</button>
-          <button class="filter-tab" data-rcurso="Análise e Sistemas" onclick="setRankCurso(this)">Análise e Sist.</button>
+          <button class="filter-tab active" data-rcurso="todos"                    onclick="setRankCurso(this)">Todos os cursos</button>
+          <button class="filter-tab"        data-rcurso="Engenharia de Software"   onclick="setRankCurso(this)">Eng. Software</button>
+          <button class="filter-tab"        data-rcurso="Ciência da Computação"    onclick="setRankCurso(this)">Ciência Comp.</button>
+          <button class="filter-tab"        data-rcurso="Análise e Sistemas"       onclick="setRankCurso(this)">Análise e Sist.</button>
         </div>
       </div>
 
-      <!-- Lista de ranking -->
       <div class="ranking-list" id="ranking-list">
+        <!-- injetado via JS -->
+      </div>
+
+    </section>
+
+    <!-- ──────────── PERFIL ──────────── -->
+    <section class="page-section hidden" id="perfil">
+
+      <div class="page-hero perfil-hero">
+        <div class="perfil-avatar-col">
+          <div class="perfil-avatar-ring">
+            <div class="perfil-avatar-circle" id="perfil-avatar-iniciais">AL</div>
+          </div>
+          <div class="perfil-nivel-badge" id="perfil-nivel-badge">Nível Ouro ★</div>
+        </div>
+        <div class="page-hero-left">
+          <p class="hero-greeting">Seu perfil</p>
+          <h1 class="hero-title" id="perfil-nome-titulo">—</h1>
+          <div class="perfil-info-chips">
+            <span class="perfil-chip"><span class="chip-icon">🎓</span><span id="perfil-curso">—</span></span>
+            <span class="perfil-chip"><span class="chip-icon">🪪</span><span id="perfil-matricula">—</span></span>
+            <span class="perfil-chip"><span class="chip-icon">✉️</span><span id="perfil-email">—</span></span>
+          </div>
+        </div>
+        <div class="perfil-stats-row">
+          <div class="perfil-stat-card">
+            <span class="psc-icon">⚡</span>
+            <span class="psc-num" id="perfil-pts-disp">—</span>
+            <span class="psc-label">Pts disponíveis</span>
+          </div>
+          <div class="perfil-stat-card">
+            <span class="psc-icon">🏅</span>
+            <span class="psc-num" id="perfil-pts-total">—</span>
+            <span class="psc-label">Pts totais ganhos</span>
+          </div>
+          <div class="perfil-stat-card">
+            <span class="psc-icon">📈</span>
+            <span class="psc-num" id="perfil-pos-ranking">—</span>
+            <span class="psc-label">Posição no ranking</span>
+          </div>
+          <div class="perfil-stat-card">
+            <span class="psc-icon">🎁</span>
+            <span class="psc-num" id="perfil-resgates">—</span>
+            <span class="psc-label">Resgates feitos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfil-controls">
+        <div class="perfil-controls-left">
+          <div class="perfil-select-wrap">
+            <label class="perfil-select-label">Semestre</label>
+            <select id="perfil-semestre-sel" class="perfil-select" onchange="renderAtividades()">
+              <option value="2025-1">2025 — 1º Semestre</option>
+              <option value="2024-2">2024 — 2º Semestre</option>
+              <option value="2024-1">2024 — 1º Semestre</option>
+            </select>
+          </div>
+        </div>
+        <div class="perfil-filter-group">
+          <button class="filter-tab active" data-atype="todos"      onclick="setAtivType(this)">Todas</button>
+          <button class="filter-tab"        data-atype="ganhou"     onclick="setAtivType(this)">Ganhou pts</button>
+          <button class="filter-tab"        data-atype="nao_ganhou" onclick="setAtivType(this)">Não ganhou</button>
+        </div>
+      </div>
+
+      <div class="perfil-semestre-resumo" id="perfil-semestre-resumo">
+        <!-- injetado via JS -->
+      </div>
+
+      <div class="perfil-timeline" id="perfil-timeline">
         <!-- injetado via JS -->
       </div>
 
@@ -312,7 +374,9 @@
       </div>
     </footer>
 
-  </div>
+  </div><!-- fim #app -->
+
+  <!-- ──────────── MODAIS (fora do #app) ──────────── -->
 
   <!-- MODAL DE RESGATE -->
   <div id="modal-overlay" class="modal-overlay hidden">
@@ -322,11 +386,11 @@
       </button>
       <div class="modal-img" id="modal-img"></div>
       <div class="modal-body">
-        <span class="modal-cat" id="modal-cat"></span>
-        <h3 class="modal-title" id="modal-title"></h3>
-        <p class="modal-desc" id="modal-desc"></p>
+        <span class="modal-cat"   id="modal-cat"></span>
+        <h3 class="modal-title"   id="modal-title"></h3>
+        <p class="modal-desc"     id="modal-desc"></p>
         <div class="modal-pts-row">
-          <span class="modal-pts-num" id="modal-pts"></span>
+          <span class="modal-pts-num"   id="modal-pts"></span>
           <span class="modal-pts-label">pontos</span>
         </div>
         <div class="modal-actions">
@@ -338,184 +402,176 @@
   </div>
 
   <!-- MODAL REGULAMENTO -->
-<div id="modal-regulamento" class="modal-overlay hidden" onclick="closeRegulamento(event)">
-  <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
-    <div class="reg-modal-header">
-      <div class="reg-modal-header-left">
-        <div class="reg-icon-badge">📄</div>
-        <div>
-          <h3 class="modal-title">Regulamento do Programa</h3>
-          <p class="reg-subtitle">Luci College — Portal de Prêmios · 2025</p>
+  <div id="modal-regulamento" class="modal-overlay hidden" onclick="closeRegulamento(event)">
+    <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
+      <div class="reg-modal-header">
+        <div class="reg-modal-header-left">
+          <div class="reg-icon-badge">📄</div>
+          <div>
+            <h3 class="modal-title">Regulamento do Programa</h3>
+            <p class="reg-subtitle">Luci College — Portal de Prêmios · 2025</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeRegulamento()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="reg-modal-body">
+        <div class="reg-section">
+          <p class="reg-section-title">1. Como ganhar pontos</p>
+          <ul class="reg-rule-list">
+            <li>✔ Presença em aulas: 100 pontos por aula com frequência acima de 75%.</li>
+            <li>✔ Provas e avaliações: pontos proporcionais à nota (até 500 pontos por avaliação).</li>
+            <li>✔ Entrega no prazo: bônus de 100 pontos por trabalho entregue antes do vencimento.</li>
+            <li>✔ Eventos e semanas acadêmicas: pontos variáveis conforme a atividade.</li>
+          </ul>
+        </div>
+        <div class="reg-section">
+          <p class="reg-section-title">2. Tabela de pontuação</p>
+          <table class="reg-pts-table">
+            <thead><tr><th>Atividade</th><th>Pontos</th></tr></thead>
+            <tbody>
+              <tr><td>Frequência semanal (acima de 75%)</td><td>+100 pontos / aula</td></tr>
+              <tr><td>Nota em prova</td><td>até 500 pontos</td></tr>
+              <tr><td>Trabalho entregue no prazo</td><td>+100 pontos</td></tr>
+              <tr><td>Participação em eventos</td><td>200–1000 pontos</td></tr>
+              <tr><td>Indicação de colega matriculado</td><td>+300 pontos</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="reg-section">
+          <p class="reg-section-title">3. Regras de resgate</p>
+          <ul class="reg-rule-list">
+            <li>✔ Resgates são exclusivos ao titular da matrícula.</li>
+            <li>✔ O resgate é definitivo — pontos debitados não são estornados.</li>
+            <li>✔ Prêmios físicos devem ser retirados na secretaria em até 15 dias.</li>
+            <li>✔ Serviços digitais são liberados automaticamente após aprovação.</li>
+            <li>✔ Limite de 5 resgates por mês por aluno.</li>
+          </ul>
+        </div>
+        <div class="reg-section">
+          <p class="reg-section-title">4. Validade dos pontos</p>
+          <ul class="reg-rule-list">
+            <li>⚠ Os pontos expiram ao final de cada semestre letivo.</li>
+            <li>⚠ Pontos não são cumulativos entre semestres.</li>
+            <li>⚠ Em caso de trancamento ou cancelamento, os pontos são anulados.</li>
+          </ul>
         </div>
       </div>
-      <button class="modal-close" onclick="closeRegulamento()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6 6 18M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="reg-modal-body">
-
-      <div class="reg-section">
-        <p class="reg-section-title">1. Como ganhar pontos</p>
-        <ul class="reg-rule-list">
-          <li>✔ Presença em aulas: 100 pontos por aula com frequência acima de 75%.</li>
-          <li>✔ Provas e avaliações: pontos proporcionais à nota (até 500 pontos por avaliação).</li>
-          <li>✔ Entrega no prazo: bônus de 100 pontos por trabalho entregue antes do vencimento.</li>
-          <li>✔ Eventos e semanas acadêmicas: pontos variáveis conforme a atividade.</li>
-        </ul>
+      <div class="reg-modal-footer">
+        <span class="reg-footer-note">Dúvidas? Fale com a secretaria.</span>
+        <button class="btn-resgatar" onclick="closeRegulamento()">Entendido</button>
       </div>
-
-      <div class="reg-section">
-        <p class="reg-section-title">2. Tabela de pontuação</p>
-        <table class="reg-pts-table">
-          <thead><tr><th>Atividade</th><th>Pontos</th></tr></thead>
-          <tbody>
-            <tr><td>Frequência semanal (acima de 75%)</td><td>+100 pontos / aula</td></tr>
-            <tr><td>Nota em prova</td><td>até 500 pontos</td></tr>
-            <tr><td>Trabalho entregue no prazo</td><td>+100 pontos</td></tr>
-            <tr><td>Participação em eventos</td><td>200–1000 pontos</td></tr>
-            <tr><td>Indicação de colega matriculado</td><td>+300 pontos</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="reg-section">
-        <p class="reg-section-title">3. Regras de resgate</p>
-        <ul class="reg-rule-list">
-          <li>✔ Resgates são exclusivos ao titular da matrícula.</li>
-          <li>✔ O resgate é definitivo — pontos debitados não são estornados.</li>
-          <li>✔ Prêmios físicos devem ser retirados na secretaria em até 15 dias.</li>
-          <li>✔ Serviços digitais são liberados automaticamente após aprovação.</li>
-          <li>✔ Limite de 5 resgates por mês por aluno.</li>
-        </ul>
-      </div>
-
-      <div class="reg-section">
-        <p class="reg-section-title">4. Validade dos pontos</p>
-        <ul class="reg-rule-list">
-          <li>⚠ Os pontos expiram ao final de cada semestre letivo.</li>
-          <li>⚠ Pontos não são cumulativos entre semestres.</li>
-          <li>⚠ Em caso de trancamento ou cancelamento, os pontos são anulados.</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="reg-modal-footer">
-      <span class="reg-footer-note">Dúvidas? Fale com a secretaria.</span>
-      <button class="btn-resgatar" onclick="closeRegulamento()">Entendido</button>
     </div>
   </div>
-</div>
 
-<!-- MODAL SUPORTE -->
-<div id="modal-suporte" class="modal-overlay hidden" onclick="closeSuporteModal(event)">
-  <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
-    <div class="reg-modal-header">
-      <div class="reg-modal-header-left">
-        <div class="reg-icon-badge">🎧</div>
-        <div>
-          <h3 class="modal-title">Suporte</h3>
-          <p class="reg-subtitle">Fale com a equipe do Portal de Prêmios</p>
+  <!-- MODAL SUPORTE -->
+  <div id="modal-suporte" class="modal-overlay hidden" onclick="closeSuporteModal(event)">
+    <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
+      <div class="reg-modal-header">
+        <div class="reg-modal-header-left">
+          <div class="reg-icon-badge">🎧</div>
+          <div>
+            <h3 class="modal-title">Suporte</h3>
+            <p class="reg-subtitle">Fale com a equipe do Portal de Prêmios</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeSuporteModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="reg-modal-body">
+        <div class="reg-section">
+          <p class="reg-section-title">Canais de atendimento</p>
+          <a class="contact-btn" href="https://wa.me/5511999990000" target="_blank" rel="noopener">
+            <div class="contact-btn-icon wpp">💬</div>
+            <div class="contact-btn-text">
+              <strong>WhatsApp</strong>
+              <span>(11) 99999-0000 · Resposta em até 1h</span>
+            </div>
+            <span>→</span>
+          </a>
+          <a class="contact-btn" href="mailto:suporte@lucicollege.edu.br">
+            <div class="contact-btn-icon mail">✉️</div>
+            <div class="contact-btn-text">
+              <strong>E-mail</strong>
+              <span>suporte@lucicollege.edu.br</span>
+            </div>
+            <span>→</span>
+          </a>
+        </div>
+        <div class="suporte-notice">
+          🕐 Atendimento de segunda a sexta, das 8h às 18h. Mensagens fora desse horário serão respondidas no próximo dia útil.
         </div>
       </div>
-      <button class="modal-close" onclick="closeSuporteModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="reg-modal-body">
-      <div class="reg-section">
-        <p class="reg-section-title">Canais de atendimento</p>
-        <a class="contact-btn" href="https://wa.me/5511999990000" target="_blank" rel="noopener">
-          <div class="contact-btn-icon wpp">💬</div>
-          <div class="contact-btn-text">
-            <strong>WhatsApp</strong>
-            <span>(11) 99999-0000 · Resposta em até 1h</span>
-          </div>
-          <span>→</span>
-        </a>
-        <a class="contact-btn" href="mailto:suporte@lucicollege.edu.br">
-          <div class="contact-btn-icon mail">✉️</div>
-          <div class="contact-btn-text">
-            <strong>E-mail</strong>
-            <span>suporte@lucicollege.edu.br</span>
-          </div>
-          <span>→</span>
-        </a>
+      <div class="reg-modal-footer">
+        <span class="reg-footer-note">Tempo médio de resposta: 1h útil</span>
+        <button class="btn-resgatar" onclick="closeSuporteModal()">Fechar</button>
       </div>
-      <div class="suporte-notice">
-        🕐 Atendimento de segunda a sexta, das 8h às 18h. Mensagens fora desse horário serão respondidas no próximo dia útil.
-      </div>
-    </div>
-    <div class="reg-modal-footer">
-      <span class="reg-footer-note">Tempo médio de resposta: 1h útil</span>
-      <button class="btn-resgatar" onclick="closeSuporteModal()">Fechar</button>
     </div>
   </div>
-</div>
 
-<!-- MODAL SECRETARIA -->
-<div id="modal-secretaria" class="modal-overlay hidden" onclick="closeSecretariaModal(event)">
-  <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
-    <div class="reg-modal-header">
-      <div class="reg-modal-header-left">
-        <div class="reg-icon-badge">🏫</div>
-        <div>
-          <h3 class="modal-title">Secretaria</h3>
-          <p class="reg-subtitle">Informações e atendimento presencial</p>
+  <!-- MODAL SECRETARIA -->
+  <div id="modal-secretaria" class="modal-overlay hidden" onclick="closeSecretariaModal(event)">
+    <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
+      <div class="reg-modal-header">
+        <div class="reg-modal-header-left">
+          <div class="reg-icon-badge">🏫</div>
+          <div>
+            <h3 class="modal-title">Secretaria</h3>
+            <p class="reg-subtitle">Informações e atendimento presencial</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeSecretariaModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="reg-modal-body">
+        <div class="reg-section">
+          <p class="reg-section-title">Localização e contato</p>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <p class="info-label">Endereço</p>
+              <p class="info-value">Bloco A, Térreo — Campus Technology<br>Av. Luci, 1200 — São Paulo, SP</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <p class="info-label">Telefone</p>
+              <p class="info-value">(11) 3000-0000</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <p class="info-label">E-mail</p>
+              <p class="info-value">secretaria@lucicollege.edu.br</p>
+            </div>
+          </div>
+        </div>
+        <div class="reg-section">
+          <p class="reg-section-title">Horários de atendimento</p>
+          <div class="hora-grid">
+            <div class="hora-card">
+              <p class="hora-card-day">Segunda a sexta</p>
+              <p class="hora-card-time">08h – 20h</p>
+            </div>
+            <div class="hora-card">
+              <p class="hora-card-day">Sábado</p>
+              <p class="hora-card-time">09h – 13h</p>
+            </div>
+          </div>
         </div>
       </div>
-      <button class="modal-close" onclick="closeSecretariaModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="reg-modal-body">
-      <div class="reg-section">
-        <p class="reg-section-title">Localização e contato</p>
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div class="info-content">
-            <p class="info-label">Endereço</p>
-            <p class="info-value">Bloco A, Térreo — Campus Technology<br>Av. Luci, 1200 — São Paulo, SP</p>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-icon">📞</div>
-          <div class="info-content">
-            <p class="info-label">Telefone</p>
-            <p class="info-value">(11) 3000-0000</p>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-icon">✉️</div>
-          <div class="info-content">
-            <p class="info-label">E-mail</p>
-            <p class="info-value">secretaria@lucicollege.edu.br</p>
-          </div>
-        </div>
+      <div class="reg-modal-footer">
+        <span class="reg-footer-note">Retirada de prêmios: Apresentar matrícula</span>
+        <button class="btn-resgatar" style="background:#7B63F5" onclick="closeSecretariaModal()">Fechar</button>
       </div>
-      <div class="reg-section">
-        <p class="reg-section-title">Horários de atendimento</p>
-        <div class="hora-grid">
-          <div class="hora-card">
-            <p class="hora-card-day">Segunda a sexta</p>
-            <p class="hora-card-time">08h – 20h</p>
-          </div>
-          <div class="hora-card">
-            <p class="hora-card-day">Sábado</p>
-            <p class="hora-card-time">09h – 13h</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="reg-modal-footer">
-      <span class="reg-footer-note">Retirada de prêmios: Apresentar matrícula</span>
-      <button class="btn-resgatar" style="background:#7B63F5" onclick="closeSecretariaModal()">Fechar</button>
     </div>
   </div>
-</div>
+
   <!-- TOAST -->
   <div id="toast" class="toast hidden"></div>
 
