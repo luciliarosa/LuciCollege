@@ -148,11 +148,17 @@ function initNav() {
 }
 
 function showSection(sec) {
-  document.getElementById("products-grid").style.display  = sec==="catalogo" ? "grid"  : "none";
-  document.getElementById("catalog-header").style.display = sec==="catalogo" ? "block" : "none";
-  document.querySelector(".hero").style.display           = sec==="catalogo" ? "flex"  : "none";
-  toggleSection("historico", sec==="historico");
-  toggleSection("ranking",   sec==="ranking");
+  // FIX: use querySelector for class-based element (catalog-header has no id)
+  const catalogHeader = document.querySelector(".catalog-header");
+  const hero          = document.querySelector(".hero");
+  const productsGrid  = document.getElementById("products-grid");
+
+  productsGrid.style.display  = sec === "catalogo" ? "grid"  : "none";
+  catalogHeader.style.display = sec === "catalogo" ? "block" : "none";
+  hero.style.display          = sec === "catalogo" ? "flex"  : "none";
+
+  toggleSection("historico", sec === "historico");
+  toggleSection("ranking",   sec === "ranking");
 }
 
 function toggleSection(id, show) {
@@ -183,21 +189,21 @@ function renderProducts(list) {
     if (available) card.onclick = () => openModal(p);
 
     const imgContent = p.imagem
-  ? `<img src="${p.imagem}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
-  : (p.emoji || "🎁");
+      ? `<img src="${p.imagem}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
+      : (p.emoji || "🎁");
 
-card.innerHTML = `
-  <div class="pc-img">${imgContent}<span class="pc-badge ${p.categoria}">${catLabel(p.categoria)}</span></div>
-  <div class="pc-body">
-    <span class="pc-name">${p.nome}</span>
-    <span class="pc-desc">${p.descricao}</span>
-    <div class="pc-footer">
-      <div><div class="pc-pts">${formatNum(p.pontos)}</div><div class="pc-pts-label">pontos</div></div>
-      <button class="pc-btn${available?"":" disabled"}" ${available?"":"disabled"}>
-        ${!hasStock?"Esgotado":!canAfford?"Sem saldo":"Resgatar"}
-      </button>
-    </div>
-  </div>`;
+    card.innerHTML = `
+      <div class="pc-img">${imgContent}<span class="pc-badge ${p.categoria}">${catLabel(p.categoria)}</span></div>
+      <div class="pc-body">
+        <span class="pc-name">${p.nome}</span>
+        <span class="pc-desc">${p.descricao}</span>
+        <div class="pc-footer">
+          <div><div class="pc-pts">${formatNum(p.pontos)}</div><div class="pc-pts-label">pontos</div></div>
+          <button class="pc-btn${available?"":" disabled"}" ${available?"":"disabled"}>
+            ${!hasStock?"Esgotado":!canAfford?"Sem saldo":"Resgatar"}
+          </button>
+        </div>
+      </div>`;
     grid.appendChild(card);
   });
 }
@@ -416,24 +422,26 @@ function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
 function setEl(id,val) { const el=document.getElementById(id); if(el) el.textContent=val; }
 
 
+/* ══════════════════════════════════════════
+   MODAL REGULAMENTO
+   ══════════════════════════════════════════ */
 function openRegulamento() {
   document.getElementById('modal-regulamento').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
-/* ══════════════════════════════════════════
-   MODAL REGULAMENTO
-   ══════════════════════════════════════════ */
 function closeRegulamento(e) {
+  // FIX: removed the erroneous classList.remove('hidden') line that was here before
   if (e && e.target !== document.getElementById('modal-regulamento')) return;
-  document.getElementById('modal-regulamento').classList.remove('hidden');
   document.getElementById('modal-regulamento').classList.add('hidden');
   document.body.style.overflow = '';
 }
+
 function openSuporteModal() {
   document.getElementById('modal-suporte').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
+
 function closeSuporteModal(e) {
   if (e && e.target !== document.getElementById('modal-suporte')) return;
   document.getElementById('modal-suporte').classList.add('hidden');
@@ -444,6 +452,7 @@ function openSecretariaModal() {
   document.getElementById('modal-secretaria').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
+
 function closeSecretariaModal(e) {
   if (e && e.target !== document.getElementById('modal-secretaria')) return;
   document.getElementById('modal-secretaria').classList.add('hidden');
