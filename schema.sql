@@ -156,9 +156,9 @@ VALUES
 ON CONFLICT (matricula) DO NOTHING;
 
 -- Catálogo de prêmios
-INSERT INTO premios (nome, descricao, emoji, categoria, pontos, estoque)
+INSERT INTO premios (nome, descricao, imagem, categoria, pontos, estoque)
 VALUES
-  ('Mochila Luci College',      'Mochila resistente com logo bordado, compartimento para notebook 15", USB embutido.',                    '🎒', 'mochila',   2500,  8),
+  ('Mochila Luci College',      'Mochila resistente com logo bordado, compartimento para notebook 15", USB embutido.',                    "./img/MochilaLuci.png", 'mochila',   2500,  8),
   ('Caderno A5 Luci',           'Caderno capa dura A5, 200 páginas pautadas, com marcador de página Luci College.',                       '📓', 'papelaria',  600, 25),
   ('Vale Salgado — Cantina',    'Um salgado ou lanche à escolha na cantina central. Válido por 30 dias após o resgate.',                   '🥪', 'servico',    200, 99),
   ('Kit Canetas (6un)',          'Kit com 6 canetas esferográficas azuis, pretas e vermelhas com logo Luci College.',                       '🖊️', 'papelaria',  300, 40),

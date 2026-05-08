@@ -54,12 +54,12 @@
 
     <div class="login-visual">
       <div class="visual-grid">
-        <div class="vg-card vc1"><span class="vg-icon">🎒</span><span>Mochila Luci</span></div>
-        <div class="vg-card vc2"><span class="vg-icon">📓</span><span>Caderno A5</span></div>
-        <div class="vg-card vc3"><span class="vg-icon">🥪</span><span>Vale Cantina</span></div>
-        <div class="vg-card vc4"><span class="vg-icon">🖊️</span><span>Kit Canetas</span></div>
-        <div class="vg-card vc5"><span class="vg-icon">🔑</span><span>Chaveiro</span></div>
-        <div class="vg-card vc6"><span class="vg-icon">🎓</span><span>Estojo Tech</span></div>
+        <div class="vg-card vc1"><img src="./img/MochilaLuci.png" alt="Mochila Luci" class="vg-img"><span>Mochila Luci</span></div>
+        <div class="vg-card vc2"><img src="./img/CadernoLuci.png" alt="Caderno A5" class="vg-img"><span>Caderno A5</span></div>
+        <div class="vg-card vc3"><img src="./img/ValeCantinaLuci.png" alt="Vale Cantina" class="vg-img"><span>Vale Cantina</span></div>
+        <div class="vg-card vc4"><img src="./img/KitCanetaLuci.png" alt="Kit Canetas" class="vg-img"><span>Kit Canetas</span></div>
+        <div class="vg-card vc5"><img src="./img/ChaveiroLuci.png" alt="Chaveiro" class="vg-img"><span>Chaveiro</span></div>
+        <div class="vg-card vc6"><img src="./img/EstojoLuci.png" alt="Estojo Tech" class="vg-img"><span>Estojo Tech</span></div>
       </div>
       <div class="visual-tagline">
         <span class="tag-pts">+10.420 pts</span>
@@ -306,7 +306,7 @@
         <span>© 2025 Luci College Technology Campus</span>
       </div>
       <div class="footer-right">
-        <a href="#">Regulamento</a>
+        <a href="#" onclick="openRegulamento(); return false;">Regulamento</a>
         <a href="#">Suporte</a>
         <a href="#">Secretaria</a>
       </div>
@@ -336,7 +336,78 @@
       </div>
     </div>
   </div>
+  <!-- MODAL REGULAMENTO -->
+<div id="modal-regulamento" class="modal-overlay hidden" onclick="closeRegulamento(event)">
+  <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
+    <div class="reg-modal-header">
+      <div class="reg-modal-header-left">
+        <div class="reg-icon-badge">📄</div>
+        <div>
+          <h3 class="modal-title">Regulamento do Programa</h3>
+          <p class="reg-subtitle">Luci College — Portal de Prêmios · 2025</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeRegulamento()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
 
+    <div class="reg-modal-body">
+
+      <div class="reg-section">
+        <p class="reg-section-title">1. Como ganhar pontos</p>
+        <ul class="reg-rule-list">
+          <li>✔ Presença em aulas: 1 ponto por aula com frequência acima de 75%.</li>
+          <li>✔ Provas e avaliações: pontos proporcionais à nota (até 50 pts por avaliação).</li>
+          <li>✔ Entrega no prazo: bônus de 10 pontos por trabalho entregue antes do vencimento.</li>
+          <li>✔ Eventos e semanas acadêmicas: pontos variáveis conforme a atividade.</li>
+        </ul>
+      </div>
+
+      <div class="reg-section">
+        <p class="reg-section-title">2. Tabela de pontuação</p>
+        <table class="reg-pts-table">
+          <thead><tr><th>Atividade</th><th>Pontos</th></tr></thead>
+          <tbody>
+            <tr><td>Frequência semanal (acima de 75%)</td><td>+1 pt / aula</td></tr>
+            <tr><td>Nota em prova</td><td>até 50 pts</td></tr>
+            <tr><td>Trabalho entregue no prazo</td><td>+10 pts</td></tr>
+            <tr><td>Participação em eventos</td><td>20–100 pts</td></tr>
+            <tr><td>Indicação de colega matriculado</td><td>+30 pts</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="reg-section">
+        <p class="reg-section-title">3. Regras de resgate</p>
+        <ul class="reg-rule-list">
+          <li>✔ Resgates são exclusivos ao titular da matrícula.</li>
+          <li>✔ O resgate é definitivo — pontos debitados não são estornados.</li>
+          <li>✔ Prêmios físicos devem ser retirados na secretaria em até 15 dias.</li>
+          <li>✔ Serviços digitais são liberados automaticamente após aprovação.</li>
+          <li>✔ Limite de 5 resgates por mês por aluno.</li>
+        </ul>
+      </div>
+
+      <div class="reg-section">
+        <p class="reg-section-title">4. Validade dos pontos</p>
+        <ul class="reg-rule-list">
+          <li>⚠ Os pontos expiram ao final de cada semestre letivo.</li>
+          <li>⚠ Pontos não são cumulativos entre semestres.</li>
+          <li>⚠ Em caso de trancamento ou cancelamento, os pontos são anulados.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="reg-modal-footer">
+      <span class="reg-footer-note">Dúvidas? Fale com a secretaria.</span>
+      <button class="btn-resgatar" onclick="closeRegulamento()">Entendido</button>
+    </div>
+  </div>
+</div>
   <!-- TOAST -->
   <div id="toast" class="toast hidden"></div>
 

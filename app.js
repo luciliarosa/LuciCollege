@@ -23,18 +23,18 @@ const DEMO_USER = {
 };
 
 const DEMO_PRODUCTS = [
-  { id:1,  nome:"Mochila Luci College",     descricao:"Mochila resistente com logo bordado. Compartimentos para notebook 15\", USB embutido.", emoji:"🎒", categoria:"mochila",   pontos:2500, estoque:8  },
-  { id:2,  nome:"Caderno A5 Luci",          descricao:"Caderno capa dura A5, 200 páginas pautadas, com logomarca Luci College.",               emoji:"📓", categoria:"papelaria", pontos:600,  estoque:25 },
-  { id:3,  nome:"Vale Salgado — Cantina",   descricao:"Um salgado à escolha na cantina central. Válido por 30 dias.",                          emoji:"🥪", categoria:"servico",   pontos:200,  estoque:99 },
-  { id:4,  nome:"Kit Canetas (6un)",         descricao:"Kit com 6 canetas esferográficas azuis, pretas e vermelhas com logo Luci.",            emoji:"🖊️", categoria:"papelaria", pontos:300,  estoque:40 },
-  { id:5,  nome:"Chaveiro Metálico Luci",   descricao:"Chaveiro em metal com acabamento fosco e gravação do brasão Luci College.",             emoji:"🔑", categoria:"acessorio", pontos:150,  estoque:60 },
-  { id:6,  nome:"Estojo Tech Luci",         descricao:"Estojo rígido com zíper duplo, porta estilete, porta USB e espaço para cabos.",         emoji:"💼", categoria:"papelaria", pontos:900,  estoque:15 },
-  { id:7,  nome:"Garrafa Térmica 500ml",    descricao:"Garrafa inox 500ml, mantém temperatura por até 12h. Logo Luci em relevo.",              emoji:"🫙", categoria:"acessorio", pontos:1200, estoque:10 },
-  { id:8,  nome:"Vale Almoço — Rest. U.",   descricao:"Almoço completo no Restaurante Universitário. Prato, salada e sobremesa.",              emoji:"🍱", categoria:"servico",   pontos:450,  estoque:30 },
-  { id:9,  nome:"Caneca Luci Tech",         descricao:"Caneca de porcelana 350ml com design exclusivo da turma de Tecnologia.",                emoji:"☕", categoria:"acessorio", pontos:500,  estoque:20 },
-  { id:10, nome:"Impressão A4 — 50 folhas", descricao:"Crédito de 50 impressões A4 P&B nas impressoras do campus. Expira em 60 dias.",        emoji:"🖨️", categoria:"servico",   pontos:350,  estoque:99 },
-  { id:11, nome:"Mochila Slim Luci Pro",    descricao:"Versão slim premium com sistema anti-roubo e alças acolchoadas ergonômicas.",           emoji:"🎒", categoria:"mochila",   pontos:3500, estoque:4  },
-  { id:12, nome:"Agenda 2025 Luci",         descricao:"Agenda semanal capa dura 2025 com calendário acadêmico e datas de avaliações.",         emoji:"📅", categoria:"papelaria", pontos:750,  estoque:18 },
+  { id:1,  nome:"Mochila Luci College",     descricao:"Mochila resistente com logo bordado. Compartimentos para notebook 15\", USB embutido.", imagem: "./img/MochilaLuci.png", categoria:"mochila",   pontos:2500, estoque:8  },
+  { id:2,  nome:"Caderno A5 Luci",          descricao:"Caderno capa dura A5, 200 páginas pautadas, com logomarca Luci College.",               imagem: "./img/CadernoLuci.png", categoria:"papelaria", pontos:600,  estoque:25 },
+  { id:3,  nome:"Vale Salgado — Cantina",   descricao:"Um salgado à escolha na cantina central. Válido por 30 dias.",                          imagem:"./img/ValeCantinaLuci.png", categoria:"servico",   pontos:200,  estoque:99 },
+  { id:4,  nome:"Kit Canetas (6un)",        descricao:"Kit com 6 canetas esferográficas azuis, pretas e vermelhas com logo Luci.",            imagem:"./img/KitCanetaLuci.png", categoria:"papelaria", pontos:300,  estoque:40 },
+  { id:5,  nome:"Chaveiro Metálico Luci",   descricao:"Chaveiro em metal com acabamento fosco e gravação do brasão Luci College.",             imagem:"./img/ChaveiroLuci.png", categoria:"acessorio", pontos:150,  estoque:60 },
+  { id:6,  nome:"Estojo Tech Luci",         descricao:"Estojo rígido com zíper duplo, porta estilete, porta USB e espaço para cabos.",         imagem:"./img/EstojoLuci.png", categoria:"papelaria", pontos:900,  estoque:15 },
+  { id:7,  nome:"Garrafa Térmica 500ml",    descricao:"Garrafa inox 500ml, mantém temperatura por até 12h. Logo Luci em relevo.",              imagem:"./img/GarrafaLuci.png", categoria:"acessorio", pontos:1200, estoque:10 },
+  { id:8,  nome:"Vale Almoço — Rest. U.",   descricao:"Almoço completo no Restaurante Universitário. Prato, salada e sobremesa.",              imagem:"./img/ValeAlmocoLuci.png", categoria:"servico",   pontos:450,  estoque:30 },
+  { id:9,  nome:"Caneca Luci Tech",         descricao:"Caneca de porcelana 350ml com design exclusivo da turma de Tecnologia.",                imagem:"./img/CanecaLuci.png", categoria:"acessorio", pontos:500,  estoque:20 },
+  { id:10, nome:"Impressão A4 — 50 folhas", descricao:"Crédito de 50 impressões A4 P&B nas impressoras do campus. Expira em 60 dias.",        imagem:"./img/ImpressaoLuci.png", categoria:"servico",   pontos:350,  estoque:99 },
+  { id:11, nome:"Mochila Slim Luci Pro",    descricao:"Versão slim premium com sistema anti-roubo e alças acolchoadas ergonômicas.",           imagem:"./img/MochilaSlimLuci.png", categoria:"mochila",   pontos:3500, estoque:4  },
+  { id:12, nome:"Agenda 2025 Luci",         descricao:"Agenda semanal capa dura 2025 com calendário acadêmico e datas de avaliações.",         imagem:"./img/AgendaLuci.png", categoria:"papelaria", pontos:750,  estoque:18 },
 ];
 
 const DEMO_HISTORY = [
@@ -181,18 +181,23 @@ function renderProducts(list) {
     card.className = `product-card${!available?" unavailable":""}`;
     card.style.animationDelay = (i*0.05)+"s";
     if (available) card.onclick = () => openModal(p);
-    card.innerHTML = `
-      <div class="pc-img">${p.emoji}<span class="pc-badge ${p.categoria}">${catLabel(p.categoria)}</span></div>
-      <div class="pc-body">
-        <span class="pc-name">${p.nome}</span>
-        <span class="pc-desc">${p.descricao}</span>
-        <div class="pc-footer">
-          <div><div class="pc-pts">${formatNum(p.pontos)}</div><div class="pc-pts-label">pontos</div></div>
-          <button class="pc-btn${available?"":" disabled"}" ${available?"":"disabled"}>
-            ${!hasStock?"Esgotado":!canAfford?"Sem saldo":"Resgatar"}
-          </button>
-        </div>
-      </div>`;
+
+    const imgContent = p.imagem
+  ? `<img src="${p.imagem}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
+  : (p.emoji || "🎁");
+
+card.innerHTML = `
+  <div class="pc-img">${imgContent}<span class="pc-badge ${p.categoria}">${catLabel(p.categoria)}</span></div>
+  <div class="pc-body">
+    <span class="pc-name">${p.nome}</span>
+    <span class="pc-desc">${p.descricao}</span>
+    <div class="pc-footer">
+      <div><div class="pc-pts">${formatNum(p.pontos)}</div><div class="pc-pts-label">pontos</div></div>
+      <button class="pc-btn${available?"":" disabled"}" ${available?"":"disabled"}>
+        ${!hasStock?"Esgotado":!canAfford?"Sem saldo":"Resgatar"}
+      </button>
+    </div>
+  </div>`;
     grid.appendChild(card);
   });
 }
@@ -219,7 +224,7 @@ function openModal(product) {
   setEl("modal-title", product.nome);
   setEl("modal-desc",  product.descricao);
   setEl("modal-pts",   formatNum(product.pontos));
-  document.getElementById("modal-img").textContent = product.emoji;
+  document.getElementById("modal-img").textContent = product.imagem;
   const warn = document.getElementById("modal-saldo-warning");
   canAfford ? warn.classList.add("hidden") : warn.classList.remove("hidden");
   document.getElementById("btn-resgatar").disabled = !canAfford;
@@ -250,7 +255,7 @@ async function confirmarResgate() {
     currentUser.pontos_disponiveis = currentPoints;
     currentUser.resgates_total += 1;
     currentUser.pontos_resgatados += pts;
-    allHistory.unshift({ data:new Date().toLocaleDateString("pt-BR"), premio:selectedProduct.nome, emoji:selectedProduct.emoji, categoria:selectedProduct.categoria, pontos:pts, status:"pendente" });
+    allHistory.unshift({ data:new Date().toLocaleDateString("pt-BR"), premio:selectedProduct.nome, emoji:selectedProduct.imagem, categoria:selectedProduct.categoria, pontos:pts, status:"pendente" });
     closeModal(); updateUI(); renderProducts(allProducts); renderHistory(allHistory); updateHistStats();
     showToast(`✅ Resgate de "${selectedProduct.nome}" realizado!`);
   } else {
@@ -409,3 +414,19 @@ function showToast(msg, duration=3500) {
 function formatNum(n) { return Number(n).toLocaleString("pt-BR"); }
 function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
 function setEl(id,val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+
+
+function openRegulamento() {
+  document.getElementById('modal-regulamento').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ══════════════════════════════════════════
+   MODAL REGULAMENTO
+   ══════════════════════════════════════════ */
+function closeRegulamento(e) {
+  if (e && e.target !== document.getElementById('modal-regulamento')) return;
+  document.getElementById('modal-regulamento').classList.remove('hidden');
+  document.getElementById('modal-regulamento').classList.add('hidden');
+  document.body.style.overflow = '';
+}
