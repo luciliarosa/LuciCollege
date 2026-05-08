@@ -37,6 +37,8 @@
 
   --shadow:     0 8px 32px rgba(0,0,0,0.5);
   --shadow-sm:  0 2px 12px rgba(0,0,0,0.4);
+
+  --page-px: 40px;
 }
 
 html { scroll-behavior: smooth; }
@@ -1905,6 +1907,9 @@ a:hover { text-decoration: underline; }
   .my-rank-banner { margin: 0 20px 24px; flex-wrap: wrap; gap: 10px; }
   .rank-bar-wrap { display: none; }
   .footer { flex-direction: column; text-align: center; }
+  :root {
+    --page-px: 20px;
+  }
 }
 
 @media (max-width: 600px) {

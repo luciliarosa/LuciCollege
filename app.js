@@ -607,28 +607,28 @@ function renderAtividades() {
   if (resumoEl) {
     resumoEl.innerHTML = `
       <div class="psr-card">
-        <span class="psr-icon">⚡</span>
+        <span class="psr-icon"></span>
         <div class="psr-info">
           <span class="psr-num green">+${formatNum(ptsGanhos)}</span>
           <span class="psr-label">Pontos no semestre</span>
         </div>
       </div>
       <div class="psr-card">
-        <span class="psr-icon">✅</span>
+        <span class="psr-icon"></span>
         <div class="psr-info">
           <span class="psr-num green">${totalGanhou}</span>
           <span class="psr-label">Atividades com pontos</span>
         </div>
       </div>
       <div class="psr-card">
-        <span class="psr-icon">❌</span>
+        <span class="psr-icon"></span>
         <div class="psr-info">
           <span class="psr-num red">${totalNaoGanhou}</span>
           <span class="psr-label">Atividades sem pontos</span>
         </div>
       </div>
       <div class="psr-card">
-        <span class="psr-icon">📊</span>
+        <span class="psr-icon"></span>
         <div class="psr-info">
           <span class="psr-num">${totalGanhou + totalNaoGanhou > 0 ? Math.round((totalGanhou / (totalGanhou + totalNaoGanhou)) * 100) : 0}%</span>
           <span class="psr-label">Taxa de aproveitamento</span>
