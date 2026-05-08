@@ -263,7 +263,8 @@ async function confirmarResgate() {
   if (!data) data = {ok:true, pontos_restantes: currentPoints - selectedProduct.pontos};
 
   if (data.ok) {
-    const pts = selectedProduct.pontos;
+    const pts       = selectedProduct.pontos;
+    const nomePremi = selectedProduct.nome; // salva antes do closeModal zerar selectedProduct
     currentPoints = data.pontos_restantes;
     currentUser.pontos_disponiveis = currentPoints;
     currentUser.resgates_total += 1;
@@ -275,9 +276,9 @@ async function confirmarResgate() {
       imagem: selectedProduct.imagem || null,
       categoria: selectedProduct.categoria, 
       pontos: pts, 
-      status: "pendente" });    
+      status: "pendente"});    
     closeModal(); updateUI(); renderProducts(allProducts); renderHistory(allHistory); updateHistStats();
-    showToast(`✅ Resgate de "${selectedProduct.nome}" realizado!`);
+    showToast(`✅ "${nomePremi}" resgatado com sucesso! Retire na secretaria em até 15 dias.`, 5000);
   } else {
     showToast("❌ Erro ao processar o resgate. Tente novamente.");
     btn.disabled = false; btn.textContent = "Resgatar agora";
@@ -311,9 +312,9 @@ function renderHistory(list) {
       <td>
         <div style="display:flex;align-items:center;gap:10px">
           ${h.imagem
-  ? `<img src="${h.imagem}" alt="${h.premio}" style="width:28px;height:28px;object-fit:cover;border-radius:4px;">`
-  : `<span style="font-size:20px">${h.emoji||"🎁"}</span>`
-}
+            ? `<img src="${h.imagem}" alt="${h.premio}" style="width:28px;height:28px;object-fit:cover;border-radius:4px;">`
+            : `<span style="font-size:20px">${h.emoji||"🎁"}</span>`
+          }
           <span style="font-weight:500;color:var(--text)">${h.premio}</span>
         </div>
       </td>
