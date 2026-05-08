@@ -307,8 +307,8 @@
       </div>
       <div class="footer-right">
         <a href="#" onclick="openRegulamento(); return false;">Regulamento</a>
-        <a href="#">Suporte</a>
-        <a href="#">Secretaria</a>
+        <a href="#" onclick="openSuporteModal(); return false;">Suporte</a>
+        <a href="#" onclick="openSecretariaModal(); return false;">Secretaria</a>
       </div>
     </footer>
 
@@ -336,6 +336,7 @@
       </div>
     </div>
   </div>
+
   <!-- MODAL REGULAMENTO -->
 <div id="modal-regulamento" class="modal-overlay hidden" onclick="closeRegulamento(event)">
   <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
@@ -359,9 +360,9 @@
       <div class="reg-section">
         <p class="reg-section-title">1. Como ganhar pontos</p>
         <ul class="reg-rule-list">
-          <li>✔ Presença em aulas: 1 ponto por aula com frequência acima de 75%.</li>
-          <li>✔ Provas e avaliações: pontos proporcionais à nota (até 50 pts por avaliação).</li>
-          <li>✔ Entrega no prazo: bônus de 10 pontos por trabalho entregue antes do vencimento.</li>
+          <li>✔ Presença em aulas: 100 pontos por aula com frequência acima de 75%.</li>
+          <li>✔ Provas e avaliações: pontos proporcionais à nota (até 500 pontos por avaliação).</li>
+          <li>✔ Entrega no prazo: bônus de 100 pontos por trabalho entregue antes do vencimento.</li>
           <li>✔ Eventos e semanas acadêmicas: pontos variáveis conforme a atividade.</li>
         </ul>
       </div>
@@ -371,11 +372,11 @@
         <table class="reg-pts-table">
           <thead><tr><th>Atividade</th><th>Pontos</th></tr></thead>
           <tbody>
-            <tr><td>Frequência semanal (acima de 75%)</td><td>+1 pt / aula</td></tr>
-            <tr><td>Nota em prova</td><td>até 50 pts</td></tr>
-            <tr><td>Trabalho entregue no prazo</td><td>+10 pts</td></tr>
-            <tr><td>Participação em eventos</td><td>20–100 pts</td></tr>
-            <tr><td>Indicação de colega matriculado</td><td>+30 pts</td></tr>
+            <tr><td>Frequência semanal (acima de 75%)</td><td>+100 pontos / aula</td></tr>
+            <tr><td>Nota em prova</td><td>até 500 pontos</td></tr>
+            <tr><td>Trabalho entregue no prazo</td><td>+100 pontos</td></tr>
+            <tr><td>Participação em eventos</td><td>200–1000 pontos</td></tr>
+            <tr><td>Indicação de colega matriculado</td><td>+300 pontos</td></tr>
           </tbody>
         </table>
       </div>
@@ -405,6 +406,113 @@
     <div class="reg-modal-footer">
       <span class="reg-footer-note">Dúvidas? Fale com a secretaria.</span>
       <button class="btn-resgatar" onclick="closeRegulamento()">Entendido</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL SUPORTE -->
+<div id="modal-suporte" class="modal-overlay hidden" onclick="closeSuporteModal(event)">
+  <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
+    <div class="reg-modal-header">
+      <div class="reg-modal-header-left">
+        <div class="reg-icon-badge">🎧</div>
+        <div>
+          <h3 class="modal-title">Suporte</h3>
+          <p class="reg-subtitle">Fale com a equipe do Portal de Prêmios</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeSuporteModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="reg-modal-body">
+      <div class="reg-section">
+        <p class="reg-section-title">Canais de atendimento</p>
+        <a class="contact-btn" href="https://wa.me/5511999990000" target="_blank" rel="noopener">
+          <div class="contact-btn-icon wpp">💬</div>
+          <div class="contact-btn-text">
+            <strong>WhatsApp</strong>
+            <span>(11) 99999-0000 · Resposta em até 1h</span>
+          </div>
+          <span>→</span>
+        </a>
+        <a class="contact-btn" href="mailto:suporte@lucicollege.edu.br">
+          <div class="contact-btn-icon mail">✉️</div>
+          <div class="contact-btn-text">
+            <strong>E-mail</strong>
+            <span>suporte@lucicollege.edu.br</span>
+          </div>
+          <span>→</span>
+        </a>
+      </div>
+      <div class="suporte-notice">
+        🕐 Atendimento de segunda a sexta, das 8h às 18h. Mensagens fora desse horário serão respondidas no próximo dia útil.
+      </div>
+    </div>
+    <div class="reg-modal-footer">
+      <span class="reg-footer-note">Tempo médio de resposta: 1h útil</span>
+      <button class="btn-resgatar" onclick="closeSuporteModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL SECRETARIA -->
+<div id="modal-secretaria" class="modal-overlay hidden" onclick="closeSecretariaModal(event)">
+  <div class="modal-card reg-modal-card" onclick="event.stopPropagation()">
+    <div class="reg-modal-header">
+      <div class="reg-modal-header-left">
+        <div class="reg-icon-badge">🏫</div>
+        <div>
+          <h3 class="modal-title">Secretaria</h3>
+          <p class="reg-subtitle">Informações e atendimento presencial</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeSecretariaModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="reg-modal-body">
+      <div class="reg-section">
+        <p class="reg-section-title">Localização e contato</p>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div class="info-content">
+            <p class="info-label">Endereço</p>
+            <p class="info-value">Bloco A, Térreo — Campus Technology<br>Av. Luci, 1200 — São Paulo, SP</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div class="info-content">
+            <p class="info-label">Telefone</p>
+            <p class="info-value">(11) 3000-0000</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✉️</div>
+          <div class="info-content">
+            <p class="info-label">E-mail</p>
+            <p class="info-value">secretaria@lucicollege.edu.br</p>
+          </div>
+        </div>
+      </div>
+      <div class="reg-section">
+        <p class="reg-section-title">Horários de atendimento</p>
+        <div class="hora-grid">
+          <div class="hora-card">
+            <p class="hora-card-day">Segunda a sexta</p>
+            <p class="hora-card-time">08h – 20h</p>
+          </div>
+          <div class="hora-card">
+            <p class="hora-card-day">Sábado</p>
+            <p class="hora-card-time">09h – 13h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reg-modal-footer">
+      <span class="reg-footer-note">Retirada de prêmios: Apresentar matrícula</span>
+      <button class="btn-resgatar" style="background:#7B63F5" onclick="closeSecretariaModal()">Fechar</button>
     </div>
   </div>
 </div>

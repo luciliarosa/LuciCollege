@@ -430,3 +430,22 @@ function closeRegulamento(e) {
   document.getElementById('modal-regulamento').classList.add('hidden');
   document.body.style.overflow = '';
 }
+function openSuporteModal() {
+  document.getElementById('modal-suporte').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeSuporteModal(e) {
+  if (e && e.target !== document.getElementById('modal-suporte')) return;
+  document.getElementById('modal-suporte').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function openSecretariaModal() {
+  document.getElementById('modal-secretaria').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeSecretariaModal(e) {
+  if (e && e.target !== document.getElementById('modal-secretaria')) return;
+  document.getElementById('modal-secretaria').classList.add('hidden');
+  document.body.style.overflow = '';
+}
