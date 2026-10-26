@@ -1,9 +1,9 @@
 /* ══════════════════════════════════════════
    LUCI COLLEGE — PORTAL DE PRÊMIOS
-   Design: Dark Tech / Geometric
+   Design: Modern SaaS / Educational Rewards
    ══════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,9 +27,9 @@
   --text2:      #9DA3B8;
   --text3:      #5A607A;
 
-  --font-head:  'Syne', sans-serif;
-  --font-body:  'Space Grotesk', sans-serif;
-  --font-mono:  'JetBrains Mono', monospace;
+  --font-head:  'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-body:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --radius:     12px;
   --radius-lg:  20px;
@@ -65,17 +65,32 @@ body.light-theme {
   --shadow-sm:  0 2px 10px -1px rgba(15, 23, 42, 0.05);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -1927,39 +1942,37 @@ a:hover { text-decoration: underline; }
 .footer-right a { color: var(--text3); font-size: 13px; }
 .footer-right a:hover { color: var(--text); text-decoration: none; }
 
-/* ─── RESPONSIVE ─── */
+/* ─── RESPONSIVE BASE (TABLET & MOBILE) ─── */
 @media (max-width: 900px) {
   .login-visual { display: none; }
-  .login-card { width: 100%; min-height: 100vh; }
-  .hero { flex-direction: column; padding: 40px 20px; }
+  .login-card { width: 100%; max-width: 480px; margin: 0 auto; }
+  .hero { flex-direction: column; padding: 36px 20px; gap: 28px; }
   .hero-right { display: none; }
-  .hero-title { font-size: 36px; }
-  .header { padding: 0 20px; }
-  .header-nav { display: none; }
-  .catalog-header, .catalog-grid { padding-left: 20px; padding-right: 20px; }
-  .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-  .page-hero { flex-direction: column; padding: 32px 20px 24px; gap: 24px; }
+  .hero-title { font-size: clamp(28px, 6vw, 42px); line-height: 1.15; }
+  .hero-desc { font-size: 15px; margin-bottom: 24px; }
+  .header { padding: 0 16px; }
+  .catalog-header, .catalog-grid { padding-left: 16px; padding-right: 16px; }
+  .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .page-hero { flex-direction: column; padding: 28px 16px 20px; gap: 20px; }
   .hist-stats-row { grid-template-columns: repeat(2, 1fr); width: 100%; }
-  .hist-controls { padding: 0 20px 20px; flex-direction: column; align-items: flex-start; }
-  .history-table-wrap { margin: 0 20px 60px; }
+  .hist-controls { padding: 0 16px 16px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .history-table-wrap { margin: 0 16px 48px; }
   .history-table th:nth-child(3), .history-table td:nth-child(3) { display: none; }
-  .rank-hero-right { display: none; }
-  .rank-controls { padding: 0 20px 20px; flex-direction: column; align-items: flex-start; }
-  .ranking-list { padding: 0 20px 60px; }
-  .my-rank-banner { margin: 0 20px 24px; flex-wrap: wrap; gap: 10px; }
-  .rank-bar-wrap { display: none; }
-  .footer { flex-direction: column; text-align: center; }
+  .rank-controls { padding: 0 16px 16px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .ranking-list { padding: 0 16px 48px; }
+  .my-rank-banner { margin: 0 16px 20px; flex-wrap: wrap; gap: 10px; }
+  .footer { flex-direction: column; text-align: center; gap: 16px; }
   :root {
-    --page-px: 20px;
+    --page-px: 16px;
   }
 }
 
 @media (max-width: 600px) {
-  .catalog-title-row { flex-direction: column; align-items: flex-start; }
+  .catalog-title-row { flex-direction: column; align-items: flex-start; gap: 12px; }
   .search-wrap { width: 100%; }
-  .catalog-grid { grid-template-columns: 1fr 1fr; }
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .hist-stat-card { padding: 14px; }
-  .hsc-num { font-size: 22px; }
+  .hsc-num { font-size: 20px; }
   .theme-toggle-btn .theme-label { display: none; }
 }
 
@@ -3973,11 +3986,16 @@ body.light-theme .landing-hero::before {
   text-decoration: none;
 }
 
-/* Responsividade da Landing & Menu */
+/* ══════════════════════════════════════════════════════════
+   SISTEMA DE RESPONSIVIDADE & MOBILE DESIGN (COMPLETO)
+   ══════════════════════════════════════════════════════════ */
+
+/* --- TABLETS E TELAS MÉDIAS (max-width: 900px) --- */
 @media (max-width: 900px) {
   .landing-hero-inner {
     flex-direction: column;
     text-align: center;
+    gap: 36px;
   }
   .landing-hero-left {
     max-width: 100%;
@@ -3995,6 +4013,7 @@ body.light-theme .landing-hero::before {
   .landing-hero-right {
     width: 100%;
     max-width: 380px;
+    margin: 0 auto;
   }
   .float-badge {
     top: -12px;
@@ -4002,28 +4021,443 @@ body.light-theme .landing-hero::before {
   }
 }
 
-@media (max-width: 600px) {
+/* --- CELULARES & SMARTPHONES (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* NAVBAR PÚBLICA */
   .public-navbar {
-    padding: 0 16px;
+    height: 60px;
+    padding: 0 14px;
   }
   .public-navbar .brand-tag,
   .public-navbar #public-theme-label {
     display: none;
   }
-  .public-navbar .public-nav-links .nav-link {
-    padding: 6px 10px;
-    font-size: 13px;
+  .public-navbar .public-nav-links {
+    display: none; /* Mantém a barra limpa sem sobreposição no mobile */
   }
+  .btn-nav-action {
+    padding: 7px 12px;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  /* OVERLAY E CARD DE LOGIN */
+  .overlay {
+    top: 60px;
+  }
+  .login-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 16px 36px;
+    min-height: auto;
+    border-right: none;
+  }
+  .login-title {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .login-sub {
+    font-size: 13.5px;
+    margin-bottom: 16px;
+  }
+  .login-role-tabs {
+    margin-bottom: 20px;
+    gap: 2px;
+    padding: 3px;
+  }
+  .role-tab {
+    padding: 7px 4px;
+    font-size: 11.5px;
+    gap: 4px;
+  }
+  .field-group input {
+    font-size: 16px; /* Evita auto-zoom no Safari iOS */
+    padding: 12px 14px;
+  }
+  .btn-login {
+    padding: 13px;
+    font-size: 14.5px;
+  }
+
+  /* LANDING PAGE HERO */
   .landing-hero {
-    padding: 30px 16px 40px;
+    padding: 24px 16px 36px;
   }
+  .landing-hero-title {
+    font-size: clamp(26px, 7vw, 36px);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .landing-hero-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .landing-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 28px;
+    width: 100%;
+  }
+  .landing-stat-num {
+    font-size: 18px;
+  }
+  .landing-stat-label {
+    font-size: 9.5px;
+  }
+  .landing-stat-divider {
+    display: none;
+  }
+  .landing-hero-right {
+    max-width: 340px;
+    margin: 10px auto 0;
+  }
+  .prizes-grid {
+    gap: 10px;
+  }
+  .prize-card {
+    padding: 14px 10px;
+  }
+  .prize-card img {
+    width: 58px;
+    height: 58px;
+  }
+  .float-badge {
+    top: -8px;
+    right: 4px;
+    font-size: 10.5px;
+    padding: 6px 10px;
+  }
+
+  /* SEÇÕES DA LANDING */
   .landing-features-section,
   .landing-how-section,
   .landing-cta-section {
-    padding: 48px 16px;
+    padding: 36px 16px;
   }
-  .landing-footer {
+  .landing-section-title {
+    font-size: clamp(22px, 6vw, 30px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .landing-section-sub {
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  .features-grid,
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .feature-card,
+  .step-card {
     padding: 20px 16px;
+  }
+
+  /* HEADER DO APP DO ALUNO E STAFF (COM NAVEGAÇÃO HORIZONTAL FLUIDA) */
+  .header {
+    height: auto;
+    min-height: 60px;
+    padding: 8px 14px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .header-left {
+    flex: 1;
+  }
+  .header-right {
+    margin-left: auto;
+    gap: 8px;
+  }
+  .header-nav {
+    display: flex !important;
+    order: 3;
+    width: 100%;
+    margin: 4px 0 0 0;
+    padding: 6px 0 2px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    border-top: 1px solid var(--border);
+    scrollbar-width: none;
+  }
+  .header-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .header-nav .nav-link {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 20px;
+  }
+  .pts-badge {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  .btn-logout {
+    padding: 4px 10px;
+    font-size: 11.5px;
+  }
+
+  /* HERO DO ALUNO LOGADO */
+  .hero {
+    padding: 20px 14px;
+    gap: 16px;
+  }
+  .hero-greeting {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+  }
+  .hero-title {
+    font-size: clamp(24px, 6.5vw, 32px);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .hero-points-card {
+    padding: 14px 12px;
+    width: 100%;
+  }
+  .hpc-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+  .hpc-block {
+    padding: 0 4px;
+    text-align: center;
+  }
+  .hpc-num {
+    font-size: 18px;
+  }
+  .hpc-label {
+    font-size: 9px;
+  }
+
+  /* CATÁLOGO DO ALUNO */
+  .catalog-header {
+    padding: 14px 14px 8px;
+  }
+  .filter-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-tab {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .catalog-grid {
+    padding: 0 14px 36px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .product-card {
+    padding: 10px;
+  }
+  .product-img-wrap {
+    height: 120px;
+  }
+  .product-name {
+    font-size: 12.5px;
+    line-height: 1.3;
+  }
+  .product-pts {
+    font-size: 12px;
+  }
+  .btn-resgatar {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* HISTÓRICO */
+  .page-hero {
+    padding: 20px 14px 16px;
+  }
+  .page-title {
+    font-size: 22px;
+  }
+  .page-sub {
+    font-size: 13px;
+  }
+  .hist-controls {
+    padding: 0 14px 14px;
+  }
+  .history-table-wrap {
+    margin: 0 14px 36px;
+  }
+  .history-table th, .history-table td {
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+
+  /* RANKING GAMIFICADO COM PÓDIO VISÍVEL NO CELULAR */
+  .rank-hero-right {
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
+    margin-top: 14px;
+  }
+  .rank-podium {
+    align-items: flex-end;
+    gap: 6px;
+    padding-bottom: 0;
+  }
+  .podium-block {
+    width: 58px;
+  }
+  .podium-avatar {
+    width: 38px;
+    height: 38px;
+  }
+  .podium-avatar.gold {
+    width: 46px;
+    height: 46px;
+  }
+  .podium-name {
+    font-size: 10px;
+    max-width: 58px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .podium-pts {
+    font-size: 10px;
+  }
+  .rank-controls {
+    padding: 0 14px 14px;
+  }
+  .ranking-list {
+    padding: 0 14px 36px;
+  }
+  .ranking-item {
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+  .my-rank-banner {
+    margin: 0 14px 16px;
+    padding: 12px 14px;
+  }
+
+  /* PERFIL */
+  .perfil-hero {
+    grid-template-columns: 1fr;
+    padding: 16px 14px;
+    gap: 16px;
+  }
+  .perfil-card {
+    padding: 16px;
+  }
+  .atividades-wrap {
+    padding: 0 14px 36px;
+  }
+
+  /* PAINEL STAFF / ADMIN */
+  .scope-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+  .scope-select {
+    width: 100%;
+  }
+  .staff-table th, .staff-table td {
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+  .table-wrap {
+    margin: 0 14px 36px;
+  }
+  .points-grant-grid {
+    grid-template-columns: 1fr;
+    padding: 0 14px 36px;
+    gap: 16px;
+  }
+
+  /* MODAIS NO MOBILE */
+  .modal-card,
+  .reg-modal-card,
+  .lgpd-modal-card {
+    width: calc(100% - 24px);
+    max-width: 480px;
+    max-height: 90vh;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  .reg-modal-header,
+  .reg-modal-footer {
+    padding: 14px 16px;
+  }
+  .reg-modal-body {
+    padding: 16px;
+  }
+  .school-info-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+    gap: 12px;
+  }
+  .quick-guide-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* --- TELAS MUITO PEQUENAS (max-width: 420px) --- */
+@media (max-width: 420px) {
+  .landing-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-cta-primary,
+  .btn-cta-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 13.5px;
+  }
+  .catalog-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .product-card {
+    padding: 8px;
+  }
+  .product-img-wrap {
+    height: 105px;
+  }
+  .product-name {
+    font-size: 11.5px;
+  }
+  .prizes-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .prize-card {
+    padding: 10px 6px;
+  }
+  .prize-card img {
+    width: 48px;
+    height: 48px;
   }
 }
 
