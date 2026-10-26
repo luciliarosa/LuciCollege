@@ -1,4 +1,4 @@
-﻿"""
+"""
 ══════════════════════════════════════════════════════════
   LUCI COLLEGE — Portal de Prêmios
   Backend: Python + Flask + PostgreSQL
@@ -15,15 +15,24 @@ from functools import wraps
 from flask import Flask, request, jsonify, send_from_directory, session
 import psycopg2
 import psycopg2.extras
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ─── CONFIG ───────────────────────────────────────────
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "frontend"))
+
 app = Flask(
     __name__,
-    static_folder="../frontend",
-    template_folder="../frontend",
+    static_folder=FRONTEND_DIR,
+    template_folder=FRONTEND_DIR,
+    static_url_path="",
 )
 
 app.secret_key = os.environ.get("SECRET_KEY", "luci-college-secret-dev-key")
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 DB_CONFIG = {
     "host":     os.environ.get("DB_HOST",     "localhost"),
@@ -37,7 +46,13 @@ DB_CONFIG = {
 # ─── DB CONNECTION ─────────────────────────────────────
 def get_db():
     """Retorna conexão com o banco PostgreSQL."""
-    conn = psycopg2.connect(**DB_CONFIG)
+    if DATABASE_URL:
+        url = DATABASE_URL
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        conn = psycopg2.connect(url)
+    else:
+        conn = psycopg2.connect(**DB_CONFIG)
     conn.autocommit = False
     return conn
 
@@ -90,7 +105,7 @@ def serialize(row):
 
 
 # ══════════════════════════════════════════════════════
-#  ROTAS ESTÁTICAS
+#  ROTAS ESTÁTICAS E ASSETS
 # ══════════════════════════════════════════════════════
 
 @app.route("/")
@@ -101,6 +116,14 @@ def index():
 @app.route("/static/<path:path>")
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
+
+
+@app.route("/<path:path>")
+def serve_assets(path):
+    file_path = os.path.join(app.static_folder, path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        return send_from_directory(app.static_folder, path)
+    return send_from_directory(app.template_folder, "index.html")
 
 
 # ══════════════════════════════════════════════════════
@@ -399,4 +422,6 @@ def add_pontos():
 
 # ─── RUN ──────────────────────────────────────────────
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "false").lower() in ("true", "1")
+    app.run(host="0.0.0.0", port=port, debug=debug)
