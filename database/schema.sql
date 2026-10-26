@@ -1,4 +1,4 @@
--- ══════════════════════════════════════════════════════════
+﻿-- ══════════════════════════════════════════════════════════
 --   LUCI COLLEGE — Schema PostgreSQL
 --   Banco: luci_college
 --   Executar: psql -U postgres -d luci_college -f schema.sql
@@ -169,7 +169,7 @@ VALUES
   ('Caneca Luci Tech',          'Caneca de porcelana 350ml com design exclusivo da turma de Tecnologia.',                                  '☕', 'acessorio',  500, 20),
   ('Impressão A4 — 50 folhas',  'Crédito de 50 impressões A4 P&B nas impressoras do campus. Expira em 60 dias.',                          '🖨️', 'servico',    350, 99),
   ('Mochila Slim Luci Pro',     'Versão slim premium com sistema anti-roubo e alças acolchoadas ergonômicas.',                             '🎒', 'mochila',   3500,  4),
-  ('Agenda 2025 Luci',          'Agenda semanal capa dura 2025 com calendário acadêmico Luci College e datas de avaliações.',              '📅', 'papelaria',  750, 18)
+  ('Agenda 2026 Luci',          'Agenda semanal capa dura 2026 com calendário acadêmico Luci College e datas de avaliações.',              '📅', 'papelaria',  750, 18)
 ON CONFLICT DO NOTHING;
 
 -- Histórico de resgates de exemplo (aluno LC2024001)

@@ -1,4 +1,4 @@
-"""
+﻿"""
 ══════════════════════════════════════════════════════════
   LUCI COLLEGE — Portal de Prêmios
   Backend: Python + Flask + PostgreSQL
@@ -19,8 +19,8 @@ import psycopg2.extras
 # ─── CONFIG ───────────────────────────────────────────
 app = Flask(
     __name__,
-    static_folder="../static",
-    template_folder="../templates",
+    static_folder="../frontend",
+    template_folder="../frontend",
 )
 
 app.secret_key = os.environ.get("SECRET_KEY", "luci-college-secret-dev-key")
@@ -362,7 +362,7 @@ def ranking():
 def add_pontos():
     """Adiciona pontos a um aluno. Requer token admin no header."""
     token = request.headers.get("X-Admin-Token")
-    if token != os.environ.get("ADMIN_TOKEN", "luci-admin-2025"):
+    if token != os.environ.get("ADMIN_TOKEN", "luci-admin-2026"):
         return jsonify({"ok": False, "error": "Não autorizado"}), 403
 
     data = request.get_json()
